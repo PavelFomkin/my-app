@@ -11,6 +11,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { TourLiteComponent } from './tour-lite/tour-lite.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FooterComponent } from './footer/footer.component';
     MessagesComponent,
     DashboardComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TourLiteComponent
   ],
   imports: [
     BrowserModule,
