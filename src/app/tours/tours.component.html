@@ -1,0 +1,14 @@
+<div>
+  <a *ngIf="currentTour; else elseBlock">
+      <app-tour-full [tour]="currentTour"></app-tour-full>
+      <button (click)="goBack()"><span>back</span></button>
+  </a>
+  <ng-template #elseBlock>
+    <h2>{{title}}</h2>
+    <nav>
+      <a *ngFor="let tour of tours">
+        <app-tour-lite [tour]="tour" (click)="onClick(tour)"></app-tour-lite>
+      </a>
+    </nav>
+  </ng-template>
+</div>

@@ -12,6 +12,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TourLiteComponent } from './tour-lite/tour-lite.component';
+import { ToursComponent } from './tours/tours.component';
+import { TourDetailComponent } from './tour-detail/tour-detail.component';
+import { TourFullComponent } from './tour-full/tour-full.component';
+import { InfoComponent } from './info/info.component';
+import { EditTourComponent } from './edit-tour/edit-tour.component';
+import { OrderComponent } from './order/order.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +29,14 @@ import { TourLiteComponent } from './tour-lite/tour-lite.component';
     DashboardComponent,
     HeaderComponent,
     FooterComponent,
-    TourLiteComponent
+    TourLiteComponent,
+    ToursComponent,
+    TourDetailComponent,
+    TourFullComponent,
+    InfoComponent,
+    EditTourComponent,
+    OrderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

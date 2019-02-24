@@ -1,10 +1,14 @@
 export class Tour {
   id: number;
+  title: string;
+  description: string;
+  shortDescription: string;
+  duration: string;
+  participants: number;
+  venue: string;
   price: number;
-  dates: Array<number>;
+  // pictures: Array<String>;
 
-  constructor(public name: string,
-              public description: string,
-              public imageSrc: string = 'assets/img/nature.jpg'){
+  constructor(public imageSrc: string = 'assets/img/nature.jpg'){
   }
 }

@@ -1,0 +1,13 @@
+<div>
+  <ul>
+    <li> title: {{tour.title}} </li>
+    <li> description: {{tour.description}} </li>
+    <li> duration: {{tour.duration}} </li>
+    <li> participants: {{tour.participants}} </li>
+    <li> venue: {{tour.venue}} </li>
+    <li> price: {{tour.price}} </li>
+    <li> <img src="{{tour.imageSrc}}"/> </li>
+  </ul>
+
+  <button routerLink="/tours/{{tour.id}}"> look at the vacant dates </button>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 import { Tour } from '../shared/tour';
 
@@ -8,12 +8,10 @@ import { Tour } from '../shared/tour';
   styleUrls: ['./tour-lite.component.css']
 })
 export class TourLiteComponent implements OnInit {
+  @Input() tour: Tour;
 
-  tour: Tour = new Tour('name', 'description');
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
-
 }

@@ -1,8 +1,7 @@
-<div style="background:grey; width:500px; height:500px; padding:3px; border-radius:10px ">
-  <h3>name: {{tour.name}}</h3>
-  <img style="top:0px" src="{{tour.imageSrc}}" alt="Can't find a picture">
-  <h3>description: {{tour.description}}</h3>
-  <ul>dates:
-    <li *ngFor="let date of tour.dates">{{date | date:'h:mm a z'}}</li>
-  </ul>
+<div class="content">
+  <span> title: {{tour.title}}</span>
+  <div class="image">
+    <img src="{{tour.imageSrc}}" alt="Can't find a picture">
+  </div>
+  <span> description: {{tour.shortDescription}}</span>
 </div>
