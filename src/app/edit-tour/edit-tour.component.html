@@ -1,3 +1,13 @@
 <div>
-
+  <form class="tourForm" (ngSubmit)="saveTour()" #tourForm="ngForm">
+    <label>Title: </label> <input type="text" name="title" [(ngModel)]="tour.title" required> <br>
+    <label>Short description: </label> <input type="text" name="shortDescription" [(ngModel)]="tour.shortDescription"> <br>
+    <label>Description: </label> <input type="text" name="description" [(ngModel)]="tour.description"> <br>
+    <label>Duration: </label> <input type="text" name="duration" [(ngModel)]="tour.duration"> <br>
+    <label>Number of participants: </label> <input type="text" name="participants" [(ngModel)]="tour.participants"> <br>
+    <label>Venue: </label> <input type="text" name="venue" [(ngModel)]="tour.venue"> <br>
+    <label>Price: </label> <input type="text" name="price" [(ngModel)]="tour.price"> <br>
+    <button type="submit" [disabled]="tourForm.form.invalid">Save</button>
+  </form>
+  <button (click)="goBack()">Cancel</button>
 </div>

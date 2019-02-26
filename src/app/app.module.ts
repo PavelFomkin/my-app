@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+//import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { InfoComponent } from './info/info.component';
 import { EditTourComponent } from './edit-tour/edit-tour.component';
 import { OrderComponent } from './order/order.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TourEditorComponent } from './tour-editor/tour-editor.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +38,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     InfoComponent,
     EditTourComponent,
     OrderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TourEditorComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
+//    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,7 +18,7 @@ const httpOptions = {
 })
 export class TourService {
   toursUrl: string = '//localhost:8080/tours';
-  tours: Tour[];
+  tourUrl: string = '//localhost:8080/tour';
 
   constructor(private http: HttpClient) {
   }
@@ -30,6 +30,15 @@ export class TourService {
   getVacationTour(id: number): Observable<VacationTour[]> {
     let url = this.toursUrl + "/" + id;
     return this.http.get<VacationTour[]>(url, httpOptions);
+  }
+
+  getTour(id: number): Observable<Tour> {
+    let url = this.tourUrl + "/" + id;
+    return this.http.get<Tour>(url, httpOptions);
+  }
+
+  saveTour(tour: Tour): void {
+    alert('great');
   }
 
 //  getVacationTours(tour: Tour){

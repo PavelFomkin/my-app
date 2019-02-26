@@ -1,0 +1,10 @@
+<div>
+  <nav>
+    <a *ngFor="let tour of tours">
+      <app-tour-full [tour]="tour"></app-tour-full>
+      <button routerLink="/edit/{{tour.id}}">Edit</button>
+      <button type="reset" (click)="deleteTour(tour.id)">Delete</button>
+    </a>
+  </nav>
+  <!--<button routeLink="/create-tour"></button>-->
+</div>
