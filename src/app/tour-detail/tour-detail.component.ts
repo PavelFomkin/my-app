@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 
 import {TourService} from '../tour.service';
-import {VacationTour} from '../shared/vacation-tour';
+import {VacantTour} from '../shared/vacant-tour';
 import {log} from 'util';
 
 @Component({
@@ -12,7 +12,7 @@ import {log} from 'util';
   styleUrls: ['./tour-detail.component.css']
 })
 export class TourDetailComponent implements OnInit {
-  vacationTours: VacationTour[];
+  vacantTours: VacantTour[];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,8 +28,8 @@ export class TourDetailComponent implements OnInit {
 
   getTour(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.tourService.getVacationTour(id)
-      .subscribe(vacationTours => this.vacationTours = vacationTours);
+    this.tourService.getVacantTours(id)
+      .subscribe(vacantTours => this.vacantTours = vacantTours);
   }
 
   goBack(): void {

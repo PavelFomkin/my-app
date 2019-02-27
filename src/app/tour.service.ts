@@ -3,8 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 
 import {Tour} from './shared/tour';
+import {VacantTour} from './shared/vacant-tour';
+
 import {Observable} from 'rxjs';
-import {VacationTour} from './shared/vacation-tour';
 import {log} from 'util';
 
 const httpOptions = {
@@ -17,31 +18,66 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class TourService {
-  toursUrl: string = '//localhost:8080/tours';
-  tourUrl: string = '//localhost:8080/tour';
+  source: string = '//localhost:8080/';
+  getToursUrl: string = this.source + 'tours';
+  getTourUrl: string = this.source + 'tour/';
+  getVacantTourUrl: string = this.source + 'vacant-tour/';
+  getVacantToursUrl: string = this.source + 'vacant-tours/';
+  getAllVacantToursUrl: string = this.source + 'all-vacant-tours/';
+  createTourUrl: string = this.source + 'create-tour';
+  updateTourUrl: string = this.source + 'update-tour/';
+  deleteTourUrl: string = this.source + 'delete-tour/';
 
   constructor(private http: HttpClient) {
   }
 
   getTours(): Observable<Tour[]> {
-    return this.http.get<Tour[]>(this.toursUrl, httpOptions);
-  }
-
-  getVacationTour(id: number): Observable<VacationTour[]> {
-    let url = this.toursUrl + "/" + id;
-    return this.http.get<VacationTour[]>(url, httpOptions);
+    return this.http.get<Tour[]>(this.getToursUrl, httpOptions);
   }
 
   getTour(id: number): Observable<Tour> {
-    let url = this.tourUrl + "/" + id;
+    let url = this.getTourUrl + id;
     return this.http.get<Tour>(url, httpOptions);
   }
 
-  saveTour(tour: Tour): void {
-    alert('great');
+  getVacantTour(id: number): Observable<VacantTour> {
+    let url = this.getVacantTourUrl + id;
+    return this.http.get<VacantTour>(url, httpOptions);
   }
 
-//  getVacationTours(tour: Tour){
+  getVacantTours(id: number): Observable<VacantTour[]> {
+    let url = this.getVacantToursUrl + id;
+    return this.http.get<VacantTour[]>(url, httpOptions);
+  }
+
+  getAllVacantTours(id: number): Observable<VacantTour[]> {
+      let url = this.getAllVacantToursUrl + id;
+      return this.http.get<VacantTour[]>(url, httpOptions);
+  }
+
+  createTour(tour: Tour): Observable<Tour> {
+      return this.http.post<Tour>(this.createTourUrl, tour, httpOptions);
+  }
+
+  updateTour(tour: Tour): Observable<Tour> {
+    let url = this.updateTourUrl + tour.id;
+    return this.http.put<Tour>(url, tour, httpOptions);
+  }
+
+  deleteTour(id: number) : Observable<{}> {
+    let url = this.deleteTourUrl + id;
+    return this.http.delete(url, httpOptions);
+  }
+
+  createVacantTour(vacantTour: VacantTour){
+    alert('create vacant tour');
+  }
+
+  deleteVacantTour(vacId: number){
+    alert('delete vacant tour');
+  }
+
+//  getVacantTours(tour: Tour){
 //      const url = `${this.toursUrl}/${tour.id}`;
 //      return this.http.post<any>(url, tour, this.httpOptions)
 //      .pipe(

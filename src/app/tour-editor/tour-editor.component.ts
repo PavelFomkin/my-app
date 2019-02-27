@@ -23,7 +23,7 @@ export class TourEditorComponent implements OnInit {
   }
 
   deleteTour(id: number) {
-    alert("delete.");
+    this.tourService.deleteTour(id).subscribe(() => this.getTours());
   }
 
 }

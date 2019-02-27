@@ -1,15 +1,13 @@
 <div>
-  <div *ngIf="vacationTours && vacationTours.length > 0; else elseBlock">
-    <a *ngFor="let vacTour of vacationTours">
-      <ul *ngIf="vacTour.vacation">
-        <li>startDate: {{vacTour.startDate}}</li>
-        <li>vacation places: {{vacTour.vacationPlaces}}</li>
-      </ul>
+  <div *ngIf="vacantTours && vacantTours.length > 0; else elseBlock">
+    <a *ngFor="let vacTour of vacantTours">
+      <li>startDate: {{vacTour.startDate}}</li>
+      <li>vacant places: {{vacTour.vacantPlaces}}</li>
       <button routerLink="/order/{{vacTour.id}}">Order</button>
     </a>
   </div>
   <ng-template #elseBlock>
-    <p>We don't have any dates for this tour, if you are interesting in this tour, please connect us.</p>
+    <p>We don't have any vacant dates, if you are interesting in the tour, please contact us.</p>
   </ng-template>
   <button (click)="goBack()">back</button>
 </div>

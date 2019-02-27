@@ -1,9 +1,9 @@
 import {Tour} from './tour';
 
-export class VacationTour {
+export class VacantTour {
   id: number;
   startDate: Date;
-  vacationPlaces: number;
-  vacation: boolean;
+  vacantPlaces: number;
+  vacant: boolean;
   tour: Tour;
 }

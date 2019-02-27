@@ -1,5 +1,5 @@
 <div>
-  <form class="tourForm" (ngSubmit)="saveTour()" #tourForm="ngForm">
+  <form class="tourForm" (ngSubmit)="updateTour()" #tourForm="ngForm">
     <label>Title: </label> <input type="text" name="title" [(ngModel)]="tour.title" required> <br>
     <label>Short description: </label> <input type="text" name="shortDescription" [(ngModel)]="tour.shortDescription"> <br>
     <label>Description: </label> <input type="text" name="description" [(ngModel)]="tour.description"> <br>

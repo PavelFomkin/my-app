@@ -1,7 +1,7 @@
 <div>
   <a *ngIf="currentTour; else elseBlock">
       <app-tour-full [tour]="currentTour"></app-tour-full>
-      <button routerLink="/tours/{{currentTour.id}}">Look at the vacant dates </button>
+      <button routerLink="/vacant/{{currentTour.id}}">Look at vacant dates</button>
       <button (click)="goBack()"><span>Back</span></button>
   </a>
   <ng-template #elseBlock>

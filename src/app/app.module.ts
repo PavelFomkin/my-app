@@ -6,10 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TourLiteComponent } from './tour-lite/tour-lite.component';
@@ -21,14 +18,12 @@ import { EditTourComponent } from './edit-tour/edit-tour.component';
 import { OrderComponent } from './order/order.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TourEditorComponent } from './tour-editor/tour-editor.component';
+import { EditVacantTourComponent } from './edit-vacant-tour/edit-vacant-tour.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
-    HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent,
     HeaderComponent,
     FooterComponent,
     TourLiteComponent,
@@ -40,6 +35,7 @@ import { TourEditorComponent } from './tour-editor/tour-editor.component';
     OrderComponent,
     PageNotFoundComponent,
     TourEditorComponent,
+    EditVacantTourComponent,
   ],
   imports: [
     BrowserModule,

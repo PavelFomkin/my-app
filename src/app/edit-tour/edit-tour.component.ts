@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -32,8 +32,8 @@ export class EditTourComponent implements OnInit {
       this.location.back();
     }
 
-    saveTour() {
-      this.tourService.saveTour(this.tour);
+    updateTour() {
+      this.tourService.updateTour(this.tour).subscribe();
       this.goBack();
     }
 }

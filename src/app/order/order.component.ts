@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {VacationTour} from '../shared/vacation-tour';
+import {VacantTour} from '../shared/vacant-tour';
 import {ActivatedRoute} from '@angular/router';
 import {TourService} from '../tour.service';
 import {Location} from '@angular/common';
@@ -11,7 +11,7 @@ import {Location} from '@angular/common';
 })
 export class OrderComponent implements OnInit {
 
-  vacationTour: VacationTour;
+  vacantTour: VacantTour = new VacantTour();
 
   constructor(
     private route: ActivatedRoute,
@@ -26,8 +26,7 @@ export class OrderComponent implements OnInit {
 
   getTour(): void {
     const id = +this.route.snapshot.paramMap.get('vacId');
-    this.tourService.getVacationTour(id)
-      .subscribe(vacationTours => this.vacationTour = vacationTours[0]); // TODO: it's for testing rout
+    this.tourService.getVacantTour(id).subscribe(vacantTour => this.vacantTour = vacantTour);
   }
 
   goBack(): void {
