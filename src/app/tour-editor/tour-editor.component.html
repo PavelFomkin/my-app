@@ -3,7 +3,7 @@
     <a *ngFor="let tour of tours">
       <app-tour-lite [tour]="tour"></app-tour-lite>
       <button routerLink="/edit/{{tour.id}}">Edit</button>
-      <button routerLink="/vacant/{{tour.id}}">Look at dates</button>
+      <button routerLink="/edit/vacant/{{tour.id}}">Edit dates</button>
       <button (click)="deleteTour(tour.id)">Delete</button>
     </a>
   </nav>

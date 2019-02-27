@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MessagesComponent } from './messages/messages.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TourLiteComponent } from './tour-lite/tour-lite.component';
@@ -23,7 +22,6 @@ import { EditVacantTourComponent } from './edit-vacant-tour/edit-vacant-tour.com
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent,
     HeaderComponent,
     FooterComponent,
     TourLiteComponent,

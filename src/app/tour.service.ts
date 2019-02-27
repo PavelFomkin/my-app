@@ -6,7 +6,6 @@ import {Tour} from './shared/tour';
 import {VacantTour} from './shared/vacant-tour';
 
 import {Observable} from 'rxjs';
-import {log} from 'util';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -76,12 +75,4 @@ export class TourService {
   deleteVacantTour(vacId: number){
     alert('delete vacant tour');
   }
-
-//  getVacantTours(tour: Tour){
-//      const url = `${this.toursUrl}/${tour.id}`;
-//      return this.http.post<any>(url, tour, this.httpOptions)
-//      .pipe(
-//          catchError(this.handleError('add tour'))
-//      );
-//  }
 }

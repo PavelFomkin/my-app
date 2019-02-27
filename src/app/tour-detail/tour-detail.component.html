@@ -1,8 +1,8 @@
 <div>
   <div *ngIf="vacantTours && vacantTours.length > 0; else elseBlock">
     <a *ngFor="let vacTour of vacantTours">
-      <li>startDate: {{vacTour.startDate}}</li>
-      <li>vacant places: {{vacTour.vacantPlaces}}</li>
+      <label>StartDate: {{vacTour.startDate}}</label><br>
+      <label>Vacant places: {{vacTour.vacantPlaces}}</label><br>
       <button routerLink="/order/{{vacTour.id}}">Order</button>
     </a>
   </div>
