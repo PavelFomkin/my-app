@@ -7,7 +7,11 @@
     <label>Number of participants: </label> <input type="text" name="participants" [(ngModel)]="tour.participants"> <br>
     <label>Venue: </label> <input type="text" name="venue" [(ngModel)]="tour.venue"> <br>
     <label>Price: </label> <input type="text" name="price" [(ngModel)]="tour.price"> <br>
+    <label>Picture: </label> <input type="text" name="imageUrl" [(ngModel)]="tour.imageSrc"> <br>
     <button type="submit" [disabled]="tourForm.form.invalid">Save</button>
+    <button type="button" (click)="goBack()">Cancel</button>
   </form>
-  <button (click)="goBack()">Cancel</button>
+  <hr color="#EEE" />
+  <label>Visible: {{tour.visible}}</label> <br>
+  <button type="button" (click)="switchVisibility()">Switch visibility</button>
 </div>

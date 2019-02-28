@@ -1,26 +1,8 @@
-image {
-  position: absolute;
-}
-
 img {
-  width:94%;
-  margin: 3%;
+  width:98%;
+  margin: 1%;
 }
 
 span {
   margin: 3px 3px;
-}
-
-.content {
-  position: relative;
-  width: 300px;
-  min-height: 200px;
-  height: auto;
-  background-position: center center;
-  border-radius: 10px;
-}
-
-.content:hover {
-  cursor: pointer;
-  background: #039be5;
 }

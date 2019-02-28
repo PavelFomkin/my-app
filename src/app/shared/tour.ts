@@ -8,6 +8,7 @@ export class Tour {
   venue: string;
   price: number;
   // pictures: Array<String>;
+  visible: boolean = false;
 
   constructor(public imageSrc: string = 'assets/img/nature.jpg'){
   }

@@ -5,10 +5,10 @@
       <button (click)="goBack()"><span>Back</span></button>
   </a>
   <ng-template #elseBlock>
-    <h2>{{title}}</h2>
+    <p>{{title}}</p>
     <nav>
-      <a *ngFor="let tour of tours">
-        <app-tour-lite [tour]="tour" (click)="onClick(tour)"></app-tour-lite>
+      <a class="content" *ngFor="let tour of tours">
+        <app-tour-lite *ngIf="tour.visible" [tour]="tour" (click)="onClick(tour)"></app-tour-lite>
       </a>
     </nav>
   </ng-template>

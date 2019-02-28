@@ -20,12 +20,17 @@ export class TourService {
   source: string = '//localhost:8080/';
   getToursUrl: string = this.source + 'tours';
   getTourUrl: string = this.source + 'tour/';
-  getVacantTourUrl: string = this.source + 'vacant-tour/';
-  getVacantToursUrl: string = this.source + 'vacant-tours/';
-  getAllVacantToursUrl: string = this.source + 'all-vacant-tours/';
   createTourUrl: string = this.source + 'create-tour';
   updateTourUrl: string = this.source + 'update-tour/';
   deleteTourUrl: string = this.source + 'delete-tour/';
+  switchTourVisibilityUrl: string = this.source + 'switch-tour-visibility/';
+  getVacantToursUrl: string = this.source + 'vacant-tours/';
+  getVacantTourUrl: string = this.source + 'vacant-tour/';
+  getAllVacantToursUrl: string = this.source + 'all-vacant-tours/';
+  createVacantTourUrl: string = this.source + 'create-vacant-tour';
+  updateVacantTourUrl: string = this.source + 'update-vacant-tour/';
+  deleteVacantTourUrl: string = this.source + 'delete-vacant-tour/';
+  changeStatusVacantTourUrl: string = this.source + 'change-status-vacant-tour/';
 
   constructor(private http: HttpClient) {
   }
@@ -35,23 +40,7 @@ export class TourService {
   }
 
   getTour(id: number): Observable<Tour> {
-    let url = this.getTourUrl + id;
-    return this.http.get<Tour>(url, httpOptions);
-  }
-
-  getVacantTour(id: number): Observable<VacantTour> {
-    let url = this.getVacantTourUrl + id;
-    return this.http.get<VacantTour>(url, httpOptions);
-  }
-
-  getVacantTours(id: number): Observable<VacantTour[]> {
-    let url = this.getVacantToursUrl + id;
-    return this.http.get<VacantTour[]>(url, httpOptions);
-  }
-
-  getAllVacantTours(id: number): Observable<VacantTour[]> {
-      let url = this.getAllVacantToursUrl + id;
-      return this.http.get<VacantTour[]>(url, httpOptions);
+    return this.http.get<Tour>(this.getTourUrl + id, httpOptions);
   }
 
   createTour(tour: Tour): Observable<Tour> {
@@ -59,20 +48,50 @@ export class TourService {
   }
 
   updateTour(tour: Tour): Observable<Tour> {
-    let url = this.updateTourUrl + tour.id;
-    return this.http.put<Tour>(url, tour, httpOptions);
+    return this.http.put<Tour>(this.updateTourUrl + tour.id, tour, httpOptions);
   }
 
-  deleteTour(id: number) : Observable<{}> {
-    let url = this.deleteTourUrl + id;
-    return this.http.delete(url, httpOptions);
+  deleteTour(id: number): Observable<{}> {
+    return this.http.delete(this.deleteTourUrl + id, httpOptions);
   }
 
-  createVacantTour(vacantTour: VacantTour){
-    alert('create vacant tour');
+  switchTourVisibility(id: number): Observable<Tour> {
+    return this.http.get<Tour>(this.switchTourVisibilityUrl + id, httpOptions);
   }
 
-  deleteVacantTour(vacId: number){
-    alert('delete vacant tour');
+  getVacantTour(id: number): Observable<VacantTour> {
+    return this.http.get<VacantTour>(this.getVacantTourUrl + id, httpOptions);
+  }
+
+  getVacantTours(id: number): Observable<VacantTour[]> {
+    return this.http.get<VacantTour[]>(this.getVacantToursUrl + id, httpOptions);
+  }
+
+  getAllVacantTours(id: number): Observable<VacantTour[]> {
+      return this.http.get<VacantTour[]>(this.getAllVacantToursUrl + id, httpOptions);
+  }
+
+  saveVacantTour(vacantTour: VacantTour): Observable<VacantTour> {
+    if(vacantTour.id === undefined){
+      return this.createVacantTour(vacantTour);
+    } else {
+      return this.updateVacantTour(vacantTour);
+    }
+  }
+
+  createVacantTour(vacantTour: VacantTour): Observable<VacantTour> {
+    return this.http.post<VacantTour>(this.createVacantTourUrl, vacantTour, httpOptions);
+  }
+
+  updateVacantTour(vacantTour: VacantTour): Observable<VacantTour> {
+    return this.http.put<VacantTour>(this.updateVacantTourUrl + vacantTour.id, vacantTour, httpOptions);
+  }
+
+  deleteVacantTour(vacId: number): Observable<{}> {
+    return this.http.delete(this.deleteVacantTourUrl + vacId, httpOptions);
+  }
+
+  changeStatusVacantTour(vacantTour: VacantTour): Observable<VacantTour>{
+    return this.http.get<VacantTour>(this.changeStatusVacantTourUrl + vacantTour.id, httpOptions);
   }
 }

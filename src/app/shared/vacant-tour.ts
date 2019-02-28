@@ -4,6 +4,6 @@ export class VacantTour {
   id: number;
   startDate: Date;
   vacantPlaces: number;
-  vacant: boolean;
+  vacant: boolean = true;
   tour: Tour;
 }

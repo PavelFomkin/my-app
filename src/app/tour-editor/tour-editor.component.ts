@@ -18,12 +18,16 @@ export class TourEditorComponent implements OnInit {
     this.getTours();
   }
 
-  getTours() {
+  getTours(): void {
     this.tourService.getTours().subscribe(tours => this.tours = tours);
   }
 
-  deleteTour(id: number) {
+  deleteTour(id: number): void {
     this.tourService.deleteTour(id).subscribe(() => this.getTours());
+  }
+
+  createTour(): void {
+
   }
 
 }

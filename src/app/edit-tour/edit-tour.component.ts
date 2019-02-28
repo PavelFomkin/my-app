@@ -25,15 +25,19 @@ export class EditTourComponent implements OnInit {
     getTour(): void {
       const id = +this.route.snapshot.paramMap.get('id');
       this.tourService.getTour(id)
-        .subscribe(tour => this.tour = tour);
+                      .subscribe(tour => this.tour = tour);
     }
 
     goBack(): void {
       this.location.back();
     }
 
-    updateTour() {
-      this.tourService.updateTour(this.tour).subscribe();
-      this.goBack();
+    updateTour(): void {
+      this.tourService.updateTour(this.tour).subscribe(_ => this.goBack());
+    }
+
+    switchVisibility(){
+      this.tourService.switchTourVisibility(this.tour.id)
+                      .subscribe(_ => this.tour.visible = !this.tour.visible);
     }
 }
