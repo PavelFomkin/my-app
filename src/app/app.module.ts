@@ -8,10 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { TourLiteComponent } from './tour-lite/tour-lite.component';
 import { ToursComponent } from './tours/tours.component';
-import { TourDetailComponent } from './tour-detail/tour-detail.component';
-import { TourFullComponent } from './tour-full/tour-full.component';
 import { InfoComponent } from './info/info.component';
 import { EditTourComponent } from './edit-tour/edit-tour.component';
 import { OrderComponent } from './order/order.component';
@@ -24,10 +21,7 @@ import { EditVacantTourComponent } from './edit-vacant-tour/edit-vacant-tour.com
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    TourLiteComponent,
     ToursComponent,
-    TourDetailComponent,
-    TourFullComponent,
     InfoComponent,
     EditTourComponent,
     OrderComponent,

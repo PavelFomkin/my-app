@@ -4,9 +4,9 @@
     <label>Short description: </label> <input type="text" name="shortDescription" [(ngModel)]="tour.shortDescription"> <br>
     <label>Description: </label> <input type="text" name="description" [(ngModel)]="tour.description"> <br>
     <label>Duration: </label> <input type="text" name="duration" [(ngModel)]="tour.duration"> <br>
-    <label>Number of participants: </label> <input type="text" name="participants" [(ngModel)]="tour.participants"> <br>
+    <label>Number of participants: </label> <input type="number" name="participants" [(ngModel)]="tour.participants"> <br>
     <label>Venue: </label> <input type="text" name="venue" [(ngModel)]="tour.venue"> <br>
-    <label>Price: </label> <input type="text" name="price" [(ngModel)]="tour.price"> <br>
+    <label>Price: </label> <input type="number" name="price" [(ngModel)]="tour.price"> <br>
     <label>Picture: </label> <input type="text" name="imageUrl" [(ngModel)]="tour.imageSrc"> <br>
     <button type="submit" [disabled]="tourForm.form.invalid">Save</button>
     <button type="button" (click)="goBack()">Cancel</button>

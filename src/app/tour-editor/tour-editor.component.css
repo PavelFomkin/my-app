@@ -1,3 +1,8 @@
+img {
+  width:98%;
+  margin: 1%;
+}
+
 .content {
   position: relative;
   width: 300px;

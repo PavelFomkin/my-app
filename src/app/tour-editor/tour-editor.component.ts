@@ -9,6 +9,7 @@ import {TourService} from '../tour.service';
   styleUrls: ['./tour-editor.component.css']
 })
 export class TourEditorComponent implements OnInit {
+  defaultTitle: string = 'New tour';
   title: string = 'List of tours';
   tours: Tour[];
 
@@ -27,7 +28,7 @@ export class TourEditorComponent implements OnInit {
   }
 
   createTour(): void {
-
+    this.tourService.createTour(new Tour(this.defaultTitle)).subscribe(tour => this.tours.push(tour));
   }
 
 }

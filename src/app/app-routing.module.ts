@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
 import {ToursComponent} from './tours/tours.component';
-import {TourDetailComponent} from './tour-detail/tour-detail.component';
 import {InfoComponent} from './info/info.component';
 import {EditTourComponent} from './edit-tour/edit-tour.component';
 import {OrderComponent} from './order/order.component';
@@ -13,7 +12,6 @@ import {EditVacantTourComponent} from './edit-vacant-tour/edit-vacant-tour.compo
 const routes: Routes = [
   {path: '', redirectTo: '/tours', pathMatch: 'full'},
   {path: 'tours', component: ToursComponent},
-  {path: 'vacant/:id', component: TourDetailComponent},
   {path: 'about', component: InfoComponent},
   {path: 'edit', component: TourEditorComponent},
   {path: 'edit/:id', component: EditTourComponent},

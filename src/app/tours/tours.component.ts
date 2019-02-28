@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {Tour} from '../shared/tour';
 import {TourService} from '../tour.service';
+import {VacantTour} from '../shared/vacant-tour';
 
 @Component({
   selector: 'app-tours',
@@ -10,8 +11,9 @@ import {TourService} from '../tour.service';
 })
 export class ToursComponent implements OnInit {
   title: string = 'List of tours';
-  tours: Tour[];
+  tours: Tour[] = [];
   currentTour: Tour;
+  vacantToursOfCurrentTour: VacantTour[] = [];
 
   constructor(private tourService: TourService) {
   }
@@ -25,11 +27,16 @@ export class ToursComponent implements OnInit {
   }
 
   onClick(tour: Tour) {
-    this.currentTour = tour;
+    this.tourService.getVacantTours(tour.id)
+                    .subscribe(vacantTours => {
+                      this.currentTour = tour;
+                      this.vacantToursOfCurrentTour = vacantTours;
+                    });
   }
 
   goBack() {
     this.currentTour = null;
+    this.vacantToursOfCurrentTour = null;
     return false;
   }
 }

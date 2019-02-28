@@ -1,9 +1,12 @@
 <div>
   <nav class="content" *ngFor="let tour of tours">
-      <app-tour-lite [tour]="tour"></app-tour-lite>
-      <button routerLink="/edit/{{tour.id}}">Edit</button>
-      <button routerLink="/edit/vacant/{{tour.id}}">Edit dates</button>
-      <button (click)="deleteTour(tour.id)">Delete</button>
+    <span> title: {{tour.title}}</span>
+    <img src="{{tour.imageSrc}}" alt="Can't find a picture">
+    <span> description: {{tour.shortDescription}}</span>
+    <br>
+    <button routerLink="/edit/{{tour.id}}">Edit</button>
+    <button routerLink="/edit/vacant/{{tour.id}}">Edit dates</button>
+    <button (click)="deleteTour(tour.id)">Delete</button>
   </nav> <br>
   <button (click)="createTour()">Add tour</button>
 </div>

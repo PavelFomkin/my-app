@@ -12,8 +12,9 @@ import {TourService} from '../tour.service';
   styleUrls: ['./edit-vacant-tour.component.css']
 })
 export class EditVacantTourComponent implements OnInit {
-  tour: Tour = new Tour();
+  tour: Tour = new Tour('');
   vacantTours: VacantTour[] = [];
+  buffer: VacantTour = new VacantTour();
   target: VacantTour;
 
   constructor(private route: ActivatedRoute,
@@ -43,6 +44,7 @@ export class EditVacantTourComponent implements OnInit {
                       if(index !== -1){
                          this.vacantTours[index] = updatedTour;
                       }
+                      this.buffer = new VacantTour();
                       this.target = null;
                     });
   }
@@ -52,7 +54,7 @@ export class EditVacantTourComponent implements OnInit {
       this.deleteVacantTourFromList(vacantTour);
     } else {
       this.tourService.deleteVacantTour(vacantTour.id)
-                      .subscribe(_ => this.deleteVacantTourFromList(vacantTour));
+                      .subscribe(() => this.deleteVacantTourFromList(vacantTour));
     }
   }
 
@@ -66,10 +68,20 @@ export class EditVacantTourComponent implements OnInit {
   }
 
   edit(vacantTour: VacantTour): void {
+    this.createBuffer(vacantTour);
     this.target = vacantTour;
   }
 
-  cancel(vacantTour: VacantTour): void{
+  cancel(): void{
+    if (this.target.id === undefined) {
+      this.deleteVacantTourFromList(this.target);
+    } else {
+      const index: number = this.vacantTours.indexOf(this.target);
+      if(index !== -1){
+        this.vacantTours[index] = this.buffer;
+      }
+    }
+    this.buffer = new VacantTour();
     this.target = null;
   }
 
@@ -86,5 +98,13 @@ export class EditVacantTourComponent implements OnInit {
     if(index !== -1){
       this.vacantTours.splice(index, 1);
     }
+  }
+
+  private createBuffer(vacantTour: VacantTour): void{
+    this.buffer.id = vacantTour.id;
+    this.buffer.startDate = vacantTour.startDate;
+    this.buffer.vacantPlaces = vacantTour.vacantPlaces;
+    this.buffer.vacant = vacantTour.vacant;
+    this.buffer.tour = vacantTour.tour;
   }
 }

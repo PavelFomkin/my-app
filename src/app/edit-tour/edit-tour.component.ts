@@ -11,7 +11,7 @@ import {TourService} from '../tour.service';
   styleUrls: ['./edit-tour.component.css']
 })
 export class EditTourComponent implements OnInit {
-    tour: Tour = new Tour();
+    tour: Tour = new Tour('');
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -33,11 +33,11 @@ export class EditTourComponent implements OnInit {
     }
 
     updateTour(): void {
-      this.tourService.updateTour(this.tour).subscribe(_ => this.goBack());
+      this.tourService.updateTour(this.tour).subscribe(() => this.goBack());
     }
 
     switchVisibility(){
       this.tourService.switchTourVisibility(this.tour.id)
-                      .subscribe(_ => this.tour.visible = !this.tour.visible);
+                      .subscribe(() => this.tour.visible = !this.tour.visible);
     }
 }

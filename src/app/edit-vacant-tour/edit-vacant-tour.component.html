@@ -6,10 +6,10 @@
           <label>Vacant places: <input type="number" [(ngModel)]="target.vacantPlaces" name="vacantPlaces" required> </label> <br>
           <button type="submit" [disabled]="vacantTourForm.form.invalid">Save</button>
           <button type="reset">Clear</button>
-          <button type="button" (click)="cancel(vacantTour)">Cancel</button>
+          <button type="button" (click)="cancel()">Cancel</button>
         </form>
         <ng-template #elseBlock>
-          <label>StartDate: {{vacantTour.startDate}}</label><br>
+          <label>StartDate: {{vacantTour.startDate | date : 'd MMMM yyyy h:mm'}}</label><br>
           <label>Vacant places: {{vacantTour.vacantPlaces}}</label><br>
           <label>Vacant: {{vacantTour.vacant}}</label><br>
           <button (click)="edit(vacantTour)">Edit</button>

@@ -10,6 +10,7 @@ export class Tour {
   // pictures: Array<String>;
   visible: boolean = false;
 
-  constructor(public imageSrc: string = 'assets/img/nature.jpg'){
+  constructor(title: string, public imageSrc: string = 'assets/img/nature.jpg'){
+    this.title = title;
   }
 }
