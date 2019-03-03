@@ -1,0 +1,15 @@
+<div>
+  <nav class="content" *ngFor="let tour of tours">
+    <span> title: {{tour.title}}</span>
+    <img src="{{tour.imageUrl}}" alt="Can't find a picture">
+    <span> description: {{tour.shortDescription}}</span>
+    <br>
+    <button routerLink="/admin/editor/{{tour.id}}">Edit</button>
+    <button routerLink="/admin/editor/vacant/{{tour.id}}">Edit dates</button>
+    <button (click)="deleteTour(tour.id)">Delete</button> <br>
+    <hr color="#EEE" />
+    <label>Visible: {{tour.visible}}</label> <br>
+    <button type="button" (click)="switchTourVisibility(tour)">Switch visibility</button>
+  </nav> <br>
+  <button (click)="createTour()">Add tour</button>
+</div>

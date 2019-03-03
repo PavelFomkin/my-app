@@ -1,0 +1,27 @@
+<nav *ngIf="error === undefined || error === null; else errorBlock" class="full-content">
+  <label> title: {{tour.title}} </label> <br>
+  <label> description: {{tour.description}} </label> <br>
+  <label> duration: {{tour.duration}} </label> <br>
+  <label> participants: {{tour.participants}} </label> <br>
+  <label> venue: {{tour.venue}} </label> <br>
+  <label> price: {{tour.price}} </label> <br>
+  <nav *ngFor="let pic of tour.pictures">
+    <img src="{{pic}}">
+  </nav>
+  <div *ngIf="vacantDates.length > 0; else elseBlock">
+    <p>Vacant dates:</p>
+    <div class="vacant-date" *ngFor="let vacantDate of vacantDates">
+      <span>StartDate: {{vacantDate.startDate | date : 'd MMMM yyyy h:mm'}}</span><br>
+      <span>Vacant places: {{vacantDate.vacantPlaces}}</span><br>
+      <button routerLink="/booking/{{vacantDate.id}}">Order</button>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <p>We don't have any vacant dates, if you are interesting in the tour, please contact us.</p>
+  </ng-template>
+  <button (click)="goBack()"><span>Back</span></button>
+</nav>
+<ng-template #errorBlock>
+  <p>{{error}}</p>
+</ng-template>
+

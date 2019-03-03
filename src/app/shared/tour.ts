@@ -9,8 +9,10 @@ export class Tour {
   price: number;
   // pictures: Array<String>;
   visible: boolean = false;
+  imageUrl: string = 'assets/img/nature.jpg';
+  pictures: string[] = [];
 
-  constructor(title: string, public imageSrc: string = 'assets/img/nature.jpg'){
+  constructor(title: string){
     this.title = title;
   }
 }

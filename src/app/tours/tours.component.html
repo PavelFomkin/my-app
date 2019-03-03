@@ -1,36 +1,10 @@
-<div>
-  <nav *ngIf="currentTour; else elseBlock">
-    <div class="full-content">
-      <label> title: {{currentTour.title}} </label> <br>
-      <label> description: {{currentTour.description}} </label> <br>
-      <label> duration: {{currentTour.duration}} </label> <br>
-      <label> participants: {{currentTour.participants}} </label> <br>
-      <label> venue: {{currentTour.venue}} </label> <br>
-      <label> price: {{currentTour.price}} </label> <br>
-      <label> <img src="{{currentTour.imageSrc}}"/> </label> <br>
-    </div>
-    <div>
-      <div *ngIf="vacantToursOfCurrentTour.length > 0; else elseBlock2">
-        <div class="vacant-tour" *ngFor="let vacantTour of vacantToursOfCurrentTour">
-          <span>StartDate: {{vacantTour.startDate | date : 'd MMMM yyyy h:mm'}}</span><br>
-          <span>Vacant places: {{vacantTour.vacantPlaces}}</span><br>
-          <button routerLink="/order/{{vacantTour.id}}">Order</button>
-        </div>
-      </div>
-      <ng-template #elseBlock2>
-        <p>We don't have any vacant dates, if you are interesting in the tour, please contact us.</p>
-      </ng-template>
-    </div>
-    <button (click)="goBack()"><span>Back</span></button>
-  </nav>
-  <ng-template #elseBlock>
-    <p>{{title}}</p>
-    <a *ngFor="let tour of tours">
-      <div class="content" *ngIf="tour.visible" (click)="onClick(tour)">
-        <span> title: {{tour.title}}</span>
-        <img src="{{tour.imageSrc}}" alt="Can't find a picture">
-        <span> description: {{tour.shortDescription}}</span>
-      </div>
-    </a>
-  </ng-template>
+<div class="page">
+  <p>{{title}}</p>
+  <div class="blocks" *ngFor="let tour of tours">
+    <nav class="content" *ngIf="tour.visible" routerLink="/tours/{{tour.id}}">
+      <label> title: {{tour.title}}</label> <br>
+      <img src="{{tour.imageUrl}}" alt="Can't find a picture">
+      <span> description: {{tour.shortDescription}}</span>
+    </nav>
+  </div>
 </div>

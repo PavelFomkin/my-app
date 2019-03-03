@@ -1,0 +1,60 @@
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
+
+import {Tour} from '../shared/tour';
+import {TourService} from '../tour.service';
+
+@Component({
+  selector: 'app-edit-tour',
+  templateUrl: './admin-tour.component.html',
+  styleUrls: ['./admin-tour.component.css']
+})
+export class AdminTourComponent implements OnInit {
+  tour: Tour = new Tour('');
+  inputPictureUrl: string = '';
+  error: any;
+
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private tourService: TourService,
+              private location: Location) {
+  }
+
+  ngOnInit() {
+    this.getTour();
+  }
+
+  getTour(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.tourService.getTour(id)
+      .subscribe(tour => this.tour = tour);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  updateTour(): void {
+    this.tourService.updateTour(this.tour).subscribe(() => this.goBack());
+  }
+
+  switchVisibility() {
+    this.tourService.switchTourVisibility(this.tour.id)
+      .subscribe(() => this.tour.visible = !this.tour.visible);
+  }
+
+  addPictureUrl() {
+    if(this.inputPictureUrl.trim() !== ''){
+      this.tour.pictures.push(this.inputPictureUrl);
+      this.inputPictureUrl = '';
+    }
+  }
+
+  deletePicture(pic: string){
+    let index = this.tour.pictures.indexOf(pic);
+    if(index !== -1){
+      this.tour.pictures.splice(index, 1);
+    }
+  }
+}

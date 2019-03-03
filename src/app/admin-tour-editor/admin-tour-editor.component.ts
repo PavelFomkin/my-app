@@ -5,10 +5,10 @@ import {TourService} from '../tour.service';
 
 @Component({
   selector: 'app-tour-editor',
-  templateUrl: './tour-editor.component.html',
-  styleUrls: ['./tour-editor.component.css']
+  templateUrl: './admin-tour-editor.component.html',
+  styleUrls: ['./admin-tour-editor.component.css']
 })
-export class TourEditorComponent implements OnInit {
+export class AdminTourEditorComponent implements OnInit {
   defaultTitle: string = 'New tour';
   title: string = 'List of tours';
   tours: Tour[];
@@ -24,11 +24,22 @@ export class TourEditorComponent implements OnInit {
   }
 
   deleteTour(id: number): void {
-    this.tourService.deleteTour(id).subscribe(() => this.getTours());
+    if(confirm("Are you sure? You will not be able to restore it.")){
+      this.tourService.deleteTour(id).subscribe(() => this.getTours());
+    }
   }
 
   createTour(): void {
     this.tourService.createTour(new Tour(this.defaultTitle)).subscribe(tour => this.tours.push(tour));
   }
 
+  switchTourVisibility(tour: Tour) {
+    this.tourService.switchTourVisibility(tour.id)
+      .subscribe(updatedTour => {
+        let index = this.tours.indexOf(tour);
+        if(index !== -1){
+          this.tours[index] = updatedTour;
+        }
+      });
+  }
 }

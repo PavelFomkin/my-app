@@ -10,11 +10,14 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ToursComponent } from './tours/tours.component';
 import { InfoComponent } from './info/info.component';
-import { EditTourComponent } from './edit-tour/edit-tour.component';
-import { OrderComponent } from './order/order.component';
+import { AdminTourComponent } from './admin-tour/admin-tour.component';
+import { BookingComponent } from './booking/booking.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TourEditorComponent } from './tour-editor/tour-editor.component';
-import { EditVacantTourComponent } from './edit-vacant-tour/edit-vacant-tour.component';
+import { AdminTourEditorComponent } from './admin-tour-editor/admin-tour-editor.component';
+import { AdminVacantDateComponent } from './admin-vacant-date/admin-vacant-date.component';
+import { TourInfoComponent } from './tour-info/tour-info.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +26,14 @@ import { EditVacantTourComponent } from './edit-vacant-tour/edit-vacant-tour.com
     FooterComponent,
     ToursComponent,
     InfoComponent,
-    EditTourComponent,
-    OrderComponent,
+    AdminTourComponent,
+    BookingComponent,
     PageNotFoundComponent,
-    TourEditorComponent,
-    EditVacantTourComponent,
+    AdminTourEditorComponent,
+    AdminVacantDateComponent,
+    TourInfoComponent,
+    AdminComponent,
+    AdminOrdersComponent,
   ],
   imports: [
     BrowserModule,

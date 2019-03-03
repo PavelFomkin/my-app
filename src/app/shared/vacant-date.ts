@@ -1,6 +1,6 @@
 import {Tour} from './tour';
 
-export class VacantTour {
+export class VacantDate {
   id: number;
   startDate: Date;
   vacantPlaces: number;

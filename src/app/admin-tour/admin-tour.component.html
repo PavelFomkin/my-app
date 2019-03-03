@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="error === undefined || error === null; else errorBlock">
   <form class="tourForm" (ngSubmit)="updateTour()" #tourForm="ngForm">
     <label>Title: </label> <input type="text" name="title" [(ngModel)]="tour.title" required> <br>
     <label>Short description: </label> <input type="text" name="shortDescription" [(ngModel)]="tour.shortDescription"> <br>
@@ -7,11 +7,21 @@
     <label>Number of participants: </label> <input type="number" name="participants" [(ngModel)]="tour.participants"> <br>
     <label>Venue: </label> <input type="text" name="venue" [(ngModel)]="tour.venue"> <br>
     <label>Price: </label> <input type="number" name="price" [(ngModel)]="tour.price"> <br>
-    <label>Picture: </label> <input type="text" name="imageUrl" [(ngModel)]="tour.imageSrc"> <br>
+    <label>Main image: </label> <input type="text" name="imageUrl" [(ngModel)]="tour.imageUrl"> <br>
+
+    <label>Pictures: </label> <br>
+    <input type="text" name="picture" placeholder="Type picture URL" [(ngModel)]="inputPictureUrl">
+    <button type="button" (click)="addPictureUrl()">Add &#10004;</button> <br>
+    <nav *ngFor="let pic of tour.pictures">
+      <label>{{pic}}</label>
+      <button type="button" (click)="deletePicture(pic)">Delete &#10008;</button> <br>
+      <img src="{{pic}}" alt="Can't find a picture"> <br>
+    </nav>
+
     <button type="submit" [disabled]="tourForm.form.invalid">Save</button>
     <button type="button" (click)="goBack()">Cancel</button>
   </form>
-  <hr color="#EEE" />
-  <label>Visible: {{tour.visible}}</label> <br>
-  <button type="button" (click)="switchVisibility()">Switch visibility</button>
 </div>
+<ng-template #errorBlock>
+  <p>{{error}}</p>
+</ng-template>

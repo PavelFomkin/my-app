@@ -1,0 +1,26 @@
+<div *ngIf="error === undefined || error === null; else errorBlock">
+    <div *ngFor="let vacantDate of vacantDates">
+      <div [ngClass]="{'booked': !vacantDate.vacant}">
+        <form *ngIf="vacantDate && vacantDate === target; else elseBlock" (ngSubmit)="saveVacantDate()" #vacantDateForm="ngForm">
+          <label>StartDate: <input type="datetime-local" [(ngModel)]="target.startDate" name="startDate" required> </label> <br>
+          <label>Vacant places: <input type="number" [(ngModel)]="target.vacantPlaces" name="vacantPlaces" required> </label> <br>
+          <button type="submit" [disabled]="vacantDateForm.form.invalid">Save</button>
+          <button type="reset">Clear</button>
+          <button type="button" (click)="cancel()">Cancel</button>
+        </form>
+        <ng-template #elseBlock>
+          <label>StartDate: {{vacantDate.startDate | date : 'd MMMM yyyy h:mm'}}</label><br>
+          <label>Vacant places: {{vacantDate.vacantPlaces}}</label><br>
+          <label>Vacant: {{vacantDate.vacant}}</label><br>
+          <button (click)="edit(vacantDate)">Edit</button>
+          <button (click)="changeStatus(vacantDate)">Change status</button>
+          <button (click)="deleteVacantDate(vacantDate)">Delete</button>
+        </ng-template>
+      </div>
+    </div> <br>
+  <button (click)="createVacantDate()">Create</button>
+  <button (click)="goBack()">Back</button>
+</div>
+<ng-template #errorBlock>
+  <p>{{error}}</p>
+</ng-template>
