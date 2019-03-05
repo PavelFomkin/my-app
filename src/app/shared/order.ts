@@ -5,8 +5,9 @@ export class Order {
   phoneNumber: string;
   participants: number = 1;
   bookingDate: Date = new Date();
+  comment: string;
 
-  confirm: boolean = false;
+  confirmation: boolean = false;
   vacantDateId: number;
   tourId: number;
 }

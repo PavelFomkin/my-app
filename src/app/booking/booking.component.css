@@ -1,3 +1,9 @@
-input:valid{
+input:valid {
   border-color: #168b30;
+}
+
+.comment {
+  width: 50%;
+  min-height: 50px;
+  height: auto;
 }

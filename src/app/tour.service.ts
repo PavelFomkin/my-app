@@ -4,6 +4,7 @@ import {HttpHeaders} from '@angular/common/http';
 
 import {Tour} from './shared/tour';
 import {VacantDate} from './shared/vacant-date';
+import {Order} from './shared/order';
 
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
@@ -33,9 +34,45 @@ export class TourService {
   updateVacantDateUrl: string = this.source + 'update-vacant-date/';
   deleteVacantDateUrl: string = this.source + 'delete-vacant-date/';
   changeStatusVacantDateUrl: string = this.source + 'change-status-vacant-date/';
+  getOrdersUrl: string = this.source + 'orders';
+  getOrdersByTourIdUrl: string = this.source + 'orders/';
+  createOrderUrl: string = this.source + 'create-order';
+  deleteOrderUrl: string = this.source + 'delete-order/';
+  confirmOrderUrl: string = this.source + 'confirmation/';
+  cancelOrderConfirmationUrl: string = this.source + 'cancel-confirmation/';
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient) { }
+
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.getOrdersUrl, httpOptions)
+                    .pipe(catchError(this.handleError));
+  }
+
+  getOrdersByTourId(id: number): Observable<Order[]> {
+    return this.http.get<Order[]>(this.getOrdersByTourIdUrl + id, httpOptions)
+                    .pipe(catchError(this.handleError));
+  }
+
+  createOrder(order: Order): Observable<Order> {
+    return this.http.post<Order>(this.createOrderUrl, order, httpOptions)
+                    .pipe(catchError(this.handleError));
+  }
+
+  deleteOrder(orderId: number): Observable<{}> {
+    return this.http.delete(this.deleteOrderUrl + orderId, httpOptions)
+                    .pipe(catchError(this.handleError));
+  }
+
+  confirmOrder(orderId: number): Observable<Order> {
+    return this.http.get<Order>(this.confirmOrderUrl + orderId, httpOptions)
+                    .pipe(catchError(this.handleError));
+  }
+
+  cancelOrderConfirmation(orderId: number): Observable<Order> {
+    return this.http.get<Order>(this.cancelOrderConfirmationUrl + orderId, httpOptions)
+                    .pipe(catchError(this.handleError));
+  }
 
   getTours(): Observable<Tour[]> {
     return this.http.get<Tour[]>(this.getToursUrl, httpOptions)

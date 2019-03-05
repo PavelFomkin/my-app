@@ -1,4 +1,4 @@
-<div *ngIf="error === undefined || error === null || !order.confirm; else errorBlock">
+<div *ngIf="error === undefined || error === null; else errorBlock">
   <div>
     <label>Title: {{tour.title}} </label> <br>
     <label>Price: {{tour.price}} </label> <br>
@@ -18,8 +18,9 @@
     <label>Email: </label> <input type="text" name="email" [(ngModel)]="order.email"
                                   pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
     <label>Phone number: </label> <input type="text" name="phoneNumber" [(ngModel)]="order.phoneNumber"
-                                         pattern="^[+]*[\s0-9]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s0-9]*$" required>
-    <button type="submit" routerLink="/confirmation/{{order.id}}" [disabled]="orderForm.form.invalid">Book</button>
+                                         pattern="^[+]*[\s0-9]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s0-9]*$" required> <br>
+    <label>Comment: </label> <input class="comment" type="text" name="comment" [(ngModel)]="order.comment"> <br>
+    <button type="submit" [disabled]="orderForm.form.invalid">Book</button>
   </form>
   <button (click)="goBack()"><span>Back</span></button>
 </div>

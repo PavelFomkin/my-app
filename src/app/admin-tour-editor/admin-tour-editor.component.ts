@@ -23,9 +23,16 @@ export class AdminTourEditorComponent implements OnInit {
     this.tourService.getTours().subscribe(tours => this.tours = tours);
   }
 
-  deleteTour(id: number): void {
+  deleteTour(tour: Tour): void {
     if(confirm("Are you sure? You will not be able to restore it.")){
-      this.tourService.deleteTour(id).subscribe(() => this.getTours());
+      this.tourService.deleteTour(tour.id).subscribe(() => this.deleteTourFromList(tour));
+    }
+  }
+
+  private deleteTourFromList(tour: Tour){
+    let index = this.tours.indexOf(tour);
+    if(index !== -1){
+      this.tours.splice(index, 1);
     }
   }
 

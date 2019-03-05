@@ -1,3 +1,39 @@
-<p>
-  admin-orders works!
-</p>
+
+<nav *ngIf="error === undefined || error === null; else errorBlock">
+  <p>{{title}}</p>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone number</th>
+      <th>Participants</th>
+      <th>Booking date</th>
+      <th>Comment</th>
+      <th>Confirmation</th>
+      <th>Vacant date id</th>
+      <th>Tour</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{order.name}}</td>
+      <td>{{order.email}}</td>
+      <td>{{order.phoneNumber}}</td>
+      <td>{{order.participants}}</td>
+      <td>{{order.bookingDate | date : 'd MMMM yyyy h:mm'}}</td>
+      <td>{{order.comment}}</td>
+      <td>{{order.confirmation}}</td>
+      <td><a routerLink="/tours/{{order.tourId}}">Date id: {{order.tourId}}</a></td>
+      <td><a routerLink="/admin/editor/vacant/{{order.tourId}}">Tour {{order.vacantDateId}}</a></td>
+      <button type="button" (click)="confirmOrder(order)">Confirm</button>
+      <button type="button" (click)="cancelOrderConfirmation(order)">Cancel confirmation</button>
+      <button type="button" (click)="deleteOrder(order)">Delete</button>
+    </tr>
+    </tbody>
+  </table>
+  <button type="button" (click)="goBack()">Back</button>
+</nav>
+<ng-template #errorBlock>
+  <p>{{error}}</p>
+</ng-template>

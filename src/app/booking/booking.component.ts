@@ -39,7 +39,7 @@ export class BookingComponent implements OnInit {
 
   bookTour(){
     this.order.bookingDate = new Date();
-    alert("book");
+    this.tourService.createOrder(this.order).subscribe(() => alert("booked"));
   }
 
   goBack(): void {

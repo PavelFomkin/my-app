@@ -6,7 +6,7 @@
     <br>
     <button routerLink="/admin/editor/{{tour.id}}">Edit</button>
     <button routerLink="/admin/editor/vacant/{{tour.id}}">Edit dates</button>
-    <button (click)="deleteTour(tour.id)">Delete</button> <br>
+    <button type="button" (click)="deleteTour(tour)">Delete</button> <br>
     <hr color="#EEE" />
     <label>Visible: {{tour.visible}}</label> <br>
     <button type="button" (click)="switchTourVisibility(tour)">Switch visibility</button>
