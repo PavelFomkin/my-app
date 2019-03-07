@@ -11,19 +11,21 @@ import {AdminVacantDateComponent} from './admin-vacant-date/admin-vacant-date.co
 import {TourInfoComponent} from './tour-info/tour-info.component';
 import {AdminComponent} from './admin/admin.component';
 import {AdminOrdersComponent} from './admin-orders/admin-orders.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/tours', pathMatch: 'full'},
   {path: 'tours', component: ToursComponent},
   {path: 'tours/:id', component: TourInfoComponent},
   {path: 'about', component: InfoComponent},
-  {path: 'admin', component: AdminComponent},
-  {path: 'admin/orders', component: AdminOrdersComponent},
-  {path: 'admin/editor', component: AdminTourEditorComponent},
-  {path: 'admin/editor/:id', component: AdminTourComponent},
-  {path: 'admin/editor/vacant/:id', component: AdminVacantDateComponent},
   {path: 'booking/:vacId', component: BookingComponent},
   {path: 'confirmation/:vacId', component: ToursComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
+  {path: 'editor', component: AdminTourEditorComponent, canActivate: [AuthGuard]},
+  {path: 'editor/:id', component: AdminTourComponent, canActivate: [AuthGuard]},
+  {path: 'editor/vacant/:id', component: AdminVacantDateComponent, canActivate: [AuthGuard]},
   {path: '**', component: PageNotFoundComponent}
 ];
 

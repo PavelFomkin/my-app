@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-//import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { AdminVacantDateComponent } from './admin-vacant-date/admin-vacant-date.
 import { TourInfoComponent } from './tour-info/tour-info.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +35,14 @@ import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
     TourInfoComponent,
     AdminComponent,
     AdminOrdersComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
-//    ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

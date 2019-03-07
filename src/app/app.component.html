@@ -3,10 +3,12 @@
 <nav>
   <a routerLink="/tours">Tours</a>
   <a routerLink="/about">About us</a>
-  <a routerLink="/admin">Admin</a>
+  <a *ngIf="auth.isLoggednIn()" routerLink="/editor">Editor</a>
+  <a *ngIf="auth.isLoggednIn()" routerLink="/orders">Orders</a>
+  <a *ngIf="!auth.isLoggednIn()"routerLink="/login">Log in</a>
+  <a *ngIf="auth.isLoggednIn()" (click)="logOut()">Log out</a>
 </nav>
 
 <router-outlet></router-outlet>
 
-<!--<app-messages></app-messages>-->
 <app-footer></app-footer>
