@@ -1,19 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 
-import {Order} from '../shared/order';
-import {TourService} from '../tour.service';
+import {Order} from '../../shared/order';
+import {AdminService} from '../../services/admin.service';
 
 @Component({
   selector: 'app-admin-orders',
-  templateUrl: './admin-orders.component.html',
-  styleUrls: ['./admin-orders.component.css']
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.css']
 })
-export class AdminOrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit {
   title: string = "Orders";
   orders: Order[];
 
-  constructor(private tourService: TourService,
+  constructor(private adminService: AdminService,
               private location: Location) { }
 
   ngOnInit() {
@@ -21,12 +21,12 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   getOrders(){
-    this.tourService.getOrders().subscribe(orders => this.orders = orders);
+    this.adminService.getOrders().subscribe(orders => this.orders = orders);
   }
 
   deleteOrder(order: Order): void{
     if(confirm("Are you sure? You will not be able to restore it.")){
-      this.tourService.deleteOrder(order.id)
+      this.adminService.deleteOrder(order.id)
                           .subscribe(() => this.deleteOrderFromList(order));
     }
   }
@@ -44,13 +44,13 @@ export class AdminOrdersComponent implements OnInit {
 
   confirmOrder(order: Order){
     if(!order.confirmation){
-      this.tourService.confirmOrder(order.id).subscribe(() => order.confirmation = true);
+      this.adminService.confirmOrder(order.id).subscribe(() => order.confirmation = true);
     }
   }
 
   cancelOrderConfirmation(order: Order){
     if(order.confirmation){
-      this.tourService.cancelOrderConfirmation(order.id).subscribe(() => order.confirmation = false);
+      this.adminService.cancelOrderConfirmation(order.id).subscribe(() => order.confirmation = false);
     }
   }
 }

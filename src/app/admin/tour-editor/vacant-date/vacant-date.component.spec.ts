@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminOrdersComponent } from './admin-orders.component';
+import { VacantDateComponent } from './vacant-date.component';
 
-describe('AdminOrdersComponent', () => {
-  let component: AdminOrdersComponent;
-  let fixture: ComponentFixture<AdminOrdersComponent>;
+describe('VacantDateComponent', () => {
+  let component: VacantDateComponent;
+  let fixture: ComponentFixture<VacantDateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminOrdersComponent ]
+      declarations: [ VacantDateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminOrdersComponent);
+    fixture = TestBed.createComponent(VacantDateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

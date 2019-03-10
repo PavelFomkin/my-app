@@ -1,31 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Tour} from '../shared/tour';
-import {TourService} from '../tour.service';
+import {Tour} from '../../shared/tour';
+import {AdminService} from '../../services/admin.service';
 
 @Component({
   selector: 'app-tour-editor',
-  templateUrl: './admin-tour-editor.component.html',
-  styleUrls: ['./admin-tour-editor.component.css']
+  templateUrl: './tour-editor.component.html',
+  styleUrls: ['./tour-editor.component.css']
 })
-export class AdminTourEditorComponent implements OnInit {
+export class TourEditorComponent implements OnInit {
   defaultTitle: string = 'New tour';
   title: string = 'List of tours';
   tours: Tour[];
 
-  constructor(private tourService: TourService) { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
     this.getTours();
   }
 
   getTours(): void {
-    this.tourService.getTours().subscribe(tours => this.tours = tours);
+    this.adminService.getTours().subscribe(tours => this.tours = tours);
   }
 
   deleteTour(tour: Tour): void {
     if(confirm("Are you sure? You will not be able to restore it.")){
-      this.tourService.deleteTour(tour.id).subscribe(() => this.deleteTourFromList(tour));
+      this.adminService.deleteTour(tour.id).subscribe(() => this.deleteTourFromList(tour));
     }
   }
 
@@ -37,11 +37,11 @@ export class AdminTourEditorComponent implements OnInit {
   }
 
   createTour(): void {
-    this.tourService.createTour(new Tour(this.defaultTitle)).subscribe(tour => this.tours.push(tour));
+    this.adminService.createTour(new Tour(this.defaultTitle)).subscribe(tour => this.tours.push(tour));
   }
 
   switchTourVisibility(tour: Tour) {
-    this.tourService.switchTourVisibility(tour.id)
+    this.adminService.switchTourVisibility(tour.id)
       .subscribe(updatedTour => {
         let index = this.tours.indexOf(tour);
         if(index !== -1){

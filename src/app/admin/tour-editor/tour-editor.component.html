@@ -4,8 +4,8 @@
     <img src="{{tour.imageUrl}}" alt="Can't find a picture">
     <span> description: {{tour.shortDescription}}</span>
     <br>
-    <button routerLink="/admin/editor/{{tour.id}}">Edit</button>
-    <button routerLink="/admin/editor/vacant/{{tour.id}}">Edit dates</button>
+    <button routerLink="/editor/{{tour.id}}">Edit</button>
+    <button routerLink="/editor/vacant/{{tour.id}}">Edit dates</button>
     <button type="button" (click)="deleteTour(tour)">Delete</button> <br>
     <hr color="#EEE" />
     <label>Visible: {{tour.visible}}</label> <br>

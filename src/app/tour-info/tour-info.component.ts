@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Tour} from '../shared/tour';
 import {VacantDate} from '../shared/vacant-date';
-import {TourService} from '../tour.service';
+import {TourService} from '../services/tour.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 

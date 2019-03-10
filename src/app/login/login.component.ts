@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import {User} from '../shared/user';
 
 @Component({
   selector: 'app-login',
@@ -9,23 +10,19 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  email: string;
-  password: string;
+  user: User = new User('','');
 
-  constructor(private myRoute: Router,
+  constructor(private router: Router,
               private auth: AuthService) { }
 
   ngOnInit() {
   }
 
   login() {
-    if (this.valid()) {
-      this.auth.sendToken(this.email)
-      this.myRoute.navigate([""]);
-    }
-  }
-
-  private valid(){
-    return true;
+    this.auth.login(this.user).subscribe(token => {
+      alert(token);
+      this.auth.sendToken(token);
+      this.router.navigate(['']);
+    });
   }
 }

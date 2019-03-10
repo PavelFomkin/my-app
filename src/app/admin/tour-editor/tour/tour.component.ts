@@ -2,22 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 
-import {Tour} from '../shared/tour';
-import {TourService} from '../tour.service';
+import {Tour} from '../../../shared/tour';
+import {AdminService} from '../../../services/admin.service';
 
 @Component({
   selector: 'app-edit-tour',
-  templateUrl: './admin-tour.component.html',
-  styleUrls: ['./admin-tour.component.css']
+  templateUrl: './tour.component.html',
+  styleUrls: ['./tour.component.css']
 })
-export class AdminTourComponent implements OnInit {
+export class TourComponent implements OnInit {
   tour: Tour = new Tour('');
   inputPictureUrl: string = '';
   error: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private tourService: TourService,
+              private adminService: AdminService,
               private location: Location) {
   }
 
@@ -27,7 +27,7 @@ export class AdminTourComponent implements OnInit {
 
   getTour(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.tourService.getTour(id)
+    this.adminService.getTour(id)
       .subscribe(tour => this.tour = tour);
   }
 
@@ -36,12 +36,7 @@ export class AdminTourComponent implements OnInit {
   }
 
   updateTour(): void {
-    this.tourService.updateTour(this.tour).subscribe(() => this.goBack());
-  }
-
-  switchVisibility() {
-    this.tourService.switchTourVisibility(this.tour.id)
-      .subscribe(() => this.tour.visible = !this.tour.visible);
+    this.adminService.updateTour(this.tour).subscribe(() => this.goBack());
   }
 
   addPictureUrl() {

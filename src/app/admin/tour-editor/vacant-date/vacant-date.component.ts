@@ -2,16 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 
-import {Tour} from '../shared/tour';
-import {VacantDate} from '../shared/vacant-date';
-import {TourService} from '../tour.service';
+import {Tour} from '../../../shared/tour';
+import {VacantDate} from '../../../shared/vacant-date';
+import {AdminService} from '../../../services/admin.service';
 
 @Component({
   selector: 'app-edit-vacant-tour',
-  templateUrl: './admin-vacant-date.component.html',
-  styleUrls: ['./admin-vacant-date.component.css']
+  templateUrl: './vacant-date.component.html',
+  styleUrls: ['./vacant-date.component.css']
 })
-export class AdminVacantDateComponent implements OnInit {
+export class VacantDateComponent implements OnInit {
   tour: Tour = new Tour('');
   vacantDates: VacantDate[] = [];
   buffer: VacantDate = new VacantDate();
@@ -20,14 +20,14 @@ export class AdminVacantDateComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private tourService: TourService,
+              private adminService: AdminService,
               private location: Location) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.tourService.getTour(id)
+    this.adminService.getTour(id)
                     .subscribe(tour => this.tour = tour);
-    this.tourService.getAllVacantDates(id)
+    this.adminService.getAllVacantDates(id)
                     .subscribe(vacantDates => this.vacantDates = vacantDates);
   }
 
@@ -39,7 +39,7 @@ export class AdminVacantDateComponent implements OnInit {
   }
 
   saveVacantDate(): void {
-    this.tourService.saveVacantDate(this.target)
+    this.adminService.saveVacantDate(this.target)
                     .subscribe(updatedDate => {
                       const index: number = this.vacantDates.indexOf(this.target);
                       if(index !== -1){
@@ -54,13 +54,13 @@ export class AdminVacantDateComponent implements OnInit {
     if(this.isDraft(vacantDate)){
       this.deleteVacantDateFromList(vacantDate);
     } else {
-      this.tourService.deleteVacantDate(vacantDate.id)
+      this.adminService.deleteVacantDate(vacantDate.id)
                       .subscribe(() => this.deleteVacantDateFromList(vacantDate));
     }
   }
 
   changeStatus(vacantDate: VacantDate): void {
-    this.tourService.changeStatusVacantDate(vacantDate)
+    this.adminService.changeStatusVacantDate(vacantDate)
                     .subscribe(updatedDate => {
                       const index: number = this.vacantDates.indexOf(vacantDate);
                       if(index !== -1){
