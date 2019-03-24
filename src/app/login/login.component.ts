@@ -9,8 +9,8 @@ import {User} from '../shared/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   user: User = new User('','');
+  error = '';
 
   constructor(private router: Router,
               private auth: AuthService) { }
@@ -19,10 +19,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.login(this.user).subscribe(token => {
-      alert(token);
-      this.auth.sendToken(token);
-      this.router.navigate(['']);
+    this.auth.login(this.user)
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      }, error => {
+        this.error = 'Username or password is incorrect';
     });
   }
 }

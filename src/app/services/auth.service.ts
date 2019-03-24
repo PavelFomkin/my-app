@@ -1,15 +1,10 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {User} from '../shared/user';
 import {Observable} from 'rxjs';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'Origin, X-Requested-With, Content-Type, Accept'
-  })
-};
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,28 +14,28 @@ export class AuthService {
   loginUrl: string = this.source + 'login';
 
   constructor(private route: ActivatedRoute,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private router: Router) { }
 
-  sendToken(token: string) {
-    localStorage.setItem("LoggedInUser", token)
-  }
-
-  getToken() {
-    return localStorage.getItem("LoggedInUser")
-  }
-
-  isLoggednIn() {
-    // alert('isLoggedIn()');
-  console.log(this.getToken());
-    return this.getToken() !== null;
+  isLoggedIn() {
+    console.log(localStorage.getItem('Token'));
+    return localStorage.getItem('Token') !== null;
   }
 
   logout() {
-    localStorage.removeItem("LoggedInUser");
-    // this.route.navigate([""]);
+    localStorage.removeItem('Token');
+    this.router.navigate(['/']);
   }
 
-  login(user: User): Observable<string> {
-    return this.http.post<string>(this.loginUrl, user, httpOptions);
+  login(user: User): Observable<HttpResponse<Object>> {
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+    return this.http.post(this.loginUrl, user, { headers: headers, observe: 'response' })
+      .pipe(map(resp => {
+        localStorage.setItem('Token',resp.headers.get('Authorization'));
+        return resp;
+      }));
   }
 }
+

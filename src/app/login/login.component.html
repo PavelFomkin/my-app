@@ -1,7 +1,8 @@
 <div>
+  <p style="color: red">{{error}}</p>
   <form (ngSubmit)="login()" #loginForm="ngForm">
-      <input type="text" placeholder="Email" name="username" [(ngModel)]="user.username" required/>
-      <input type="password" placeholder="Password" name="password" [(ngModel)]="user.password" required/>
+      <input type="text" placeholder="Email" name="username" autocomplete="username" [(ngModel)]="user.username" required/>
+      <input type="password" placeholder="Password" name="password" autocomplete="password" [(ngModel)]="user.password" required/>
     <button type="submit" [disabled]="loginForm.form.invalid">Login</button>
   </form>
 </div>

@@ -18,7 +18,7 @@ import { VacantDateComponent } from './admin/tour-editor/vacant-date/vacant-date
 import { TourInfoComponent } from './tour-info/tour-info.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { LoginComponent } from './login/login.component';
-// import {TokenInterceptor} from './services/token.interceptor';
+import {TokenInterceptor} from './services/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,12 +43,11 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
-  // providers: [{
-  //   provide: HTTP_INTERCEPTORS,
-  //   useClass: TokenInterceptor,
-  //   multi: true
-  // }],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
