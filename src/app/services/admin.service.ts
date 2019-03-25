@@ -22,6 +22,8 @@ const httpOptions = {
 })
 export class AdminService {
   source: string = '//localhost:8080/';
+  getToursUrl: string = this.source + 'tours';
+  getTourUrl: string = this.source + 'tours/';
   createTourUrl: string = this.source + 'create-tour';
   updateTourUrl: string = this.source + 'update-tour/';
   deleteTourUrl: string = this.source + 'delete-tour/';
@@ -65,10 +67,12 @@ export class AdminService {
 
   // Tours
   getTours(): Observable<Tour[]> {
-    return this.tourService.getTours();
+    return this.http.get<Tour[]>(this.getToursUrl, httpOptions)
+                    .pipe(catchError(this.handleError));
   }
   getTour(id: number): Observable<Tour> {
-    return this.tourService.getTour(id);
+    return this.http.get<Tour>(this.getTourUrl + id, httpOptions)
+                    .pipe(catchError(this.handleError));
   }
   createTour(tour: Tour): Observable<Tour> {
       return this.http.post<Tour>(this.createTourUrl, tour, httpOptions)

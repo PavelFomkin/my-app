@@ -25,10 +25,15 @@ export class VacantDateComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.adminService.getTour(id)
-                    .subscribe(tour => this.tour = tour);
+    this.adminService.getTour(id).subscribe(tour => {
+                      this.tour = tour;
+                      this.getAllVacantDates(tour.id);
+                    });
+  }
+
+  getAllVacantDates(id: number){
     this.adminService.getAllVacantDates(id)
-                    .subscribe(vacantDates => this.vacantDates = vacantDates);
+                     .subscribe(vacantDates => this.vacantDates = vacantDates);
   }
 
   createVacantDate(): void {

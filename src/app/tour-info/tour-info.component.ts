@@ -28,14 +28,12 @@ export class TourInfoComponent implements OnInit {
     this.tourService.getTour(id)
                     .subscribe(tour => {
                                 this.tour = tour;
-                                this.getVacationDates(tour.id);
+                                this.getVacantDates(tour.id);
                               },
-                          error => this.error = error);
+                              error => this.error = error);
   }
 
-
-
-  getVacationDates(id: number) {
+  getVacantDates(id: number) {
     this.tourService.getVacantDates(id).subscribe(vacantDates => this.vacantDates = vacantDates);
   }
 

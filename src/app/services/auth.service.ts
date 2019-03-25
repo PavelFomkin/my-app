@@ -33,6 +33,7 @@ export class AuthService {
     };
     return this.http.post(this.loginUrl, user, { headers: headers, observe: 'response' })
       .pipe(map(resp => {
+      debugger;
         localStorage.setItem('Token',resp.headers.get('Authorization'));
         return resp;
       }));

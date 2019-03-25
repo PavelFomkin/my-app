@@ -21,8 +21,8 @@ const httpOptions = {
 })
 export class TourService {
   source: string = '//localhost:8080/';
-  getToursUrl: string = this.source + 'tours';
-  getTourUrl: string = this.source + 'tours/';
+  getToursUrl: string = this.source + 'available-tours';
+  getTourUrl: string = this.source + 'available-tours/';
   getVacantDatesUrl: string = this.source + 'vacant-dates/';
   getVacantDateUrl: string = this.source + 'vacant-date/';
   createOrderUrl: string = this.source + 'create-order';
