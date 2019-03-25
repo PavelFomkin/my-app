@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {VacantDate} from '../shared/vacant-date';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TourService} from '../services/tour.service';
 import {Location} from '@angular/common';
 import {Tour} from '../shared/tour';
@@ -17,8 +17,10 @@ export class BookingComponent implements OnInit {
   participants: number[] = [1,2,3,4];
   order: Order = new Order();
   error: any;
+  booked: boolean = false;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private tourService: TourService,
               private location: Location) { }
 
@@ -39,7 +41,9 @@ export class BookingComponent implements OnInit {
 
   bookTour(){
     this.order.bookingDate = new Date();
-    this.tourService.createOrder(this.order).subscribe(() => alert("booked"));
+    this.tourService.createOrder(this.order).subscribe(() => {
+      this.booked = true;
+    });
   }
 
   goBack(): void {

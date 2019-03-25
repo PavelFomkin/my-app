@@ -1,29 +1,34 @@
-<div *ngIf="error === undefined || error === null; else errorBlock">
-  <div>
-    <label>Title: {{tour.title}} </label> <br>
-    <label>Price: {{tour.price}} </label> <br>
-    <label>Venue: {{tour.venue}} </label> <br>
-    <label>Duration: {{tour.duration}} </label> <br>
-    <label>Start date: {{vacantDate.startDate | date : 'd MMMM yyyy h:mm'}} </label> <br>
+<div *ngIf="booked === false; else bookedOrderBlock">
+  <div *ngIf="error === undefined || error === null; else errorBlock">
+    <div>
+      <label>Title: {{tour.title}} </label> <br>
+      <label>Price: {{tour.price}} </label> <br>
+      <label>Venue: {{tour.venue}} </label> <br>
+      <label>Duration: {{tour.duration}} </label> <br>
+      <label>Start date: {{vacantDate.startDate | date : 'd MMMM yyyy h:mm'}} </label> <br>
+    </div>
+    <p>
+      Please, check the details above and provide some information for booking the tour "{{tour.title}}".
+    </p>
+    <form (ngSubmit)="bookTour()" #orderForm="ngForm">
+      <label>Participants: </label>
+      <select name="participants" [(ngModel)]="order.participants">
+        <option *ngFor="let value of participants" [value]="value">{{value}}</option>
+      </select>
+      <label>Name: </label> <input type="text" name="name" [(ngModel)]="order.name" required>
+      <label>Email: </label> <input type="text" name="email" [(ngModel)]="order.email"
+                                    pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+      <label>Phone number: </label> <input type="text" name="phoneNumber" [(ngModel)]="order.phoneNumber"
+                                           pattern="^[+]*[\s0-9]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s0-9]*$" required> <br>
+      <label>Comment: </label> <input class="comment" type="text" name="comment" [(ngModel)]="order.comment"> <br>
+      <button type="submit" [disabled]="orderForm.form.invalid">Book</button>
+    </form>
+    <button (click)="goBack()"><span>Back</span></button>
   </div>
-  <p>
-    Please, check the details above and provide some information for booking the tour "{{tour.title}}".
-  </p>
-  <form (ngSubmit)="bookTour()" #orderForm="ngForm">
-    <label>Participants: </label>
-    <select name="participants" [(ngModel)]="order.participants">
-      <option *ngFor="let value of participants" [value]="value">{{value}}</option>
-    </select>
-    <label>Name: </label> <input type="text" name="name" [(ngModel)]="order.name" required>
-    <label>Email: </label> <input type="text" name="email" [(ngModel)]="order.email"
-                                  pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
-    <label>Phone number: </label> <input type="text" name="phoneNumber" [(ngModel)]="order.phoneNumber"
-                                         pattern="^[+]*[\s0-9]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s0-9]*$" required> <br>
-    <label>Comment: </label> <input class="comment" type="text" name="comment" [(ngModel)]="order.comment"> <br>
-    <button type="submit" [disabled]="orderForm.form.invalid">Book</button>
-  </form>
-  <button (click)="goBack()"><span>Back</span></button>
+  <ng-template #errorBlock>
+    <p>{{error}}</p>
+  </ng-template>
 </div>
-<ng-template #errorBlock>
-  <p>{{error}}</p>
+<ng-template #bookedOrderBlock>
+  <p>{{order.name}}, we have send you a letter to {{order.email}} with tour details</p>
 </ng-template>
