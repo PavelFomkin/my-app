@@ -10,7 +10,7 @@
         </form>
         <ng-template #elseBlock>
           <label>Id: {{vacantDate.id}}</label><br>
-          <label>StartDate: {{vacantDate.startDate | date : 'd MMMM yyyy h:mm'}}</label><br>
+          <label>StartDate: {{vacantDate.startDate | date : 'd MMMM yyyy H:mm'}}</label><br>
           <label>Vacant places: {{vacantDate.vacantPlaces}}</label><br>
           <label>Vacant: {{vacantDate.vacant}}</label><br>
           <button (click)="edit(vacantDate)">Edit</button>

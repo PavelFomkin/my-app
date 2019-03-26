@@ -11,7 +11,7 @@
   <div *ngIf="vacantDates.length > 0; else elseBlock">
     <p>Vacant dates:</p>
     <div class="vacant-date" *ngFor="let vacantDate of vacantDates">
-      <span>StartDate: {{vacantDate.startDate | date : 'd MMMM yyyy h:mm'}}</span><br>
+      <span>StartDate: {{vacantDate.startDate | date : 'd MMMM yyyy H:mm'}}</span><br>
       <span>Vacant places: {{vacantDate.vacantPlaces}}</span><br>
       <button routerLink="/booking/{{vacantDate.id}}">Order</button>
     </div>
