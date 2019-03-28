@@ -19,6 +19,7 @@ import { TourInfoComponent } from './tour-info/tour-info.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { LoginComponent } from './login/login.component';
 import {TokenInterceptor} from './services/token.interceptor';
+import {SlideshowModule} from 'ng-simple-slideshow';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {TokenInterceptor} from './services/token.interceptor';
   ],
   imports: [
     BrowserModule,
+    SlideshowModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

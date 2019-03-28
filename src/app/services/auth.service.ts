@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {User} from '../shared/user';
+import {User} from '../entity/user';
 import {Observable} from 'rxjs';
 
 import {map} from 'rxjs/operators';
@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService{
   source: string = '//localhost:8080/';
   loginUrl: string = this.source + 'login';
 
@@ -33,7 +33,7 @@ export class AuthService {
     };
     return this.http.post(this.loginUrl, user, { headers: headers, observe: 'response' })
       .pipe(map(resp => {
-        localStorage.setItem('Token',resp.headers.get('Authorization'));
+        localStorage.setItem('Token', resp.headers.get('Authorization'));
         return resp;
       }));
   }

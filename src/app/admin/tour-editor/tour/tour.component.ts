@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 
-import {Tour} from '../../../shared/tour';
+import {Tour} from '../../../entity/tour';
 import {AdminService} from '../../../services/admin.service';
 
 @Component({

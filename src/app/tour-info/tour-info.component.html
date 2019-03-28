@@ -6,7 +6,7 @@
   <label> venue: {{tour.venue}} </label> <br>
   <label> price: {{tour.price}} </label> <br>
   <nav *ngFor="let pic of tour.pictures">
-    <img src="{{pic}}">
+    <img src="{{pic}}"/>
   </nav>
   <div *ngIf="vacantDates.length > 0; else elseBlock">
     <p>Vacant dates:</p>

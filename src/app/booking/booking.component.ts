@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {VacantDate} from '../shared/vacant-date';
+import {VacantDate} from '../entity/vacant-date';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TourService} from '../services/tour.service';
 import {Location} from '@angular/common';
-import {Tour} from '../shared/tour';
-import {Order} from '../shared/order';
+import {Tour} from '../entity/tour';
+import {Order} from '../entity/order';
 
 @Component({
   selector: 'app-order',

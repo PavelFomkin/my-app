@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Tour} from '../shared/tour';
+import {Tour} from '../entity/tour';
 import {TourService} from '../services/tour.service';
 
 @Component({

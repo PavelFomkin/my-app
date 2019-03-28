@@ -25,6 +25,7 @@ const routes: Routes = [
   {path: 'editor', component: TourEditorComponent, canActivate: [AuthGuard]},
   {path: 'editor/:id', component: TourComponent, canActivate: [AuthGuard]},
   {path: 'editor/vacant/:id', component: VacantDateComponent, canActivate: [AuthGuard]},
+  {path: 'error', component: PageNotFoundComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

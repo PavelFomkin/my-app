@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 
-import {Order} from '../../shared/order';
+import {Order} from '../../entity/order';
 import {AdminService} from '../../services/admin.service';
 
 @Component({
