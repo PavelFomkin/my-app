@@ -2,10 +2,10 @@
   <div *ngIf="error === undefined || error === null; else errorBlock">
     <div>
       <label>Title: {{tour.title}} </label> <br>
-      <label>Price: {{tour.price}} </label> <br>
       <label>Venue: {{tour.venue}} </label> <br>
       <label>Duration: {{tour.duration}} </label> <br>
       <label>Start date: {{vacantDate.startDate | date : 'd MMMM yyyy H:mm'}} </label> <br>
+      <label>Price: {{tour.price * order.participants}} </label> <br>
     </div>
     <p>
       Please, check the details above and provide some information for booking the tour "{{tour.title}}".

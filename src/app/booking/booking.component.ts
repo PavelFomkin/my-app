@@ -14,7 +14,7 @@ import {Order} from '../entity/order';
 export class BookingComponent implements OnInit {
   vacantDate: VacantDate = new VacantDate();
   tour: Tour = new Tour('');
-  participants: number[] = [1,2,3,4];
+  participants: number[] = [];
   order: Order = new Order();
   error: any;
   booked: boolean = false;
@@ -35,8 +35,17 @@ export class BookingComponent implements OnInit {
                                                 this.tour = vacantDate.tour;
                                                 this.order.tourId = this.tour.id;
                                                 this.order.vacantDateId = vacantDate.id;
+                                                this.participants = this.createRange(vacantDate.tour.participants);
                                                 },
                                                  error => this.error = error);
+  }
+
+  private createRange(number: number): number[]{
+    let items: number[] = [];
+    for(let i = 1; i <= number; i++){
+      items.push(i);
+    }
+    return items;
   }
 
   bookTour(){

@@ -1,7 +1,7 @@
 <div class="page">
   <p>{{title}}</p>
   <div class="blocks" *ngFor="let tour of tours">
-    <nav class="content" *ngIf="tour.visible" routerLink="/tours/{{tour.id}}">
+    <nav class="content" routerLink="/tours/{{tour.id}}">
       <label> title: {{tour.title}}</label> <br>
       <img src="{{tour.imageUrl}}" alt="Can't find a picture">
       <span> description: {{tour.shortDescription}}</span>

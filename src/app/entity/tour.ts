@@ -7,10 +7,11 @@ export class Tour {
   participants: number;
   venue: string;
   price: number;
-  // pictures: Array<String>;
   visible: boolean = false;
   imageUrl: string = 'assets/img/nature.jpg';
   pictures: string[] = [];
+  minStartTime: number;
+  maxStartTime: number;
 
   constructor(title: string){
     this.title = title;

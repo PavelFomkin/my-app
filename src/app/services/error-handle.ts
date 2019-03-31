@@ -22,6 +22,7 @@ export class ErrorHandle {
       case 403: {
         console.error('Token is expired.');
         this.auth.logout();
+        window.location.reload();
         break;
       }
       default: {

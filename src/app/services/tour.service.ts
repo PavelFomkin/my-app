@@ -1,22 +1,19 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 
 import {Tour} from '../entity/tour';
 import {VacantDate} from '../entity/vacant-date';
 import {Order} from '../entity/order';
 
-import {Observable, throwError} from 'rxjs';
+import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from './auth.service';
+import {ActivatedRoute} from '@angular/router';
 import {ErrorHandle} from './error-handle';
+import {Calendar} from '../entity/calendar';
 
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-};
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +53,14 @@ export class TourService {
   getVacantDates(id: number): Observable<VacantDate[]> {
     return this.http.get<VacantDate[]>(this.getVacantDatesUrl + id, httpOptions)
                     .pipe(catchError(err => this.errorHandle.handleError(err)));
+  }
+
+  getVacantDates2(year: number, month: number): Observable<Calendar[]> {
+    const params = {
+      year: year.toString(),
+      month: month.toString()
+    };
+    return this.http.get<Calendar[]>(this.source + 'vacant-dates', { headers: httpOptions.headers, params: params })
+      .pipe(catchError(err => this.errorHandle.handleError(err)));
   }
 }
