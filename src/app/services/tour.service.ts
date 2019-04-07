@@ -22,6 +22,7 @@ export class TourService {
   source: string = '//localhost:8080/';
   getToursUrl: string = this.source + 'available-tours';
   getTourUrl: string = this.source + 'available-tours/';
+  getDisableDatesUrl: string = this.source + 'disabled-dates';
   getVacantDatesUrl: string = this.source + 'vacant-dates/';
   getVacantDateUrl: string = this.source + 'vacant-date/';
   createOrderUrl: string = this.source + 'create-order';
@@ -55,12 +56,17 @@ export class TourService {
                     .pipe(catchError(err => this.errorHandle.handleError(err)));
   }
 
-  getVacantDates2(year: number, month: number): Observable<Calendar[]> {
-    const params = {
-      year: year.toString(),
-      month: month.toString()
-    };
-    return this.http.get<Calendar[]>(this.source + 'vacant-dates', { headers: httpOptions.headers, params: params })
+  getCalendarDisableDates(): Observable<Date[]> {
+    return this.http.get<Date[]>(this.getDisableDatesUrl, httpOptions)
       .pipe(catchError(err => this.errorHandle.handleError(err)));
   }
+
+  // getCalendarDisableDates(year: number, month: number): Observable<Date[]> {
+  //   const params = {
+  //     year: year.toString(),
+  //     month: month.toString()
+  //   };
+  //   return this.http.get<Date[]>(this.source + 'disabled-dates', { headers: httpOptions.headers, params: params })
+  //     .pipe(catchError(err => this.errorHandle.handleError(err)));
+  // }
 }

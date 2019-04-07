@@ -1,27 +1,52 @@
-<div *ngIf="error === undefined || error === null; else errorBlock">
+<div *ngIf="tour !== undefined; else loadingBlock">
   <form class="tourForm" (ngSubmit)="updateTour()" #tourForm="ngForm">
-    <label>Title: </label> <input type="text" name="title" [(ngModel)]="tour.title" required> <br>
-    <label>Short description: </label> <input type="text" name="shortDescription" [(ngModel)]="tour.shortDescription"> <br>
-    <label>Description: </label> <input type="text" name="description" [(ngModel)]="tour.description"> <br>
-    <label>Duration: </label> <input type="text" name="duration" [(ngModel)]="tour.duration"> <br>
-    <label>Number of participants: </label> <input type="number" name="participants" [(ngModel)]="tour.participants"> <br>
-    <label>Venue: </label> <input type="text" name="venue" [(ngModel)]="tour.venue"> <br>
-    <label>Price: </label> <input type="number" name="price" [(ngModel)]="tour.price"> <br>
-    <label>Main image: </label> <input type="text" name="imageUrl" [(ngModel)]="tour.imageUrl"> <br>
+    <h3>Название экскурсии:</h3>
+    <label> <input pInputText type="text" name="title" [(ngModel)]="tour.title" required> </label> <br>
+    <h3>Краткое описание: </h3>
+    <label> <textarea pInputTextarea style="width: 100%" [rows]="3" autoResize="autoResize"
+                      name="shortDescription" [(ngModel)]="tour.shortDescription"> </textarea> </label> <br>
+    <h3>Описание:</h3>
+    <label> <p-editor placeholder="Описание экскурсии" name="description" [(ngModel)]="tour.description"
+                      [style]="{'height':'320px'}"></p-editor> </label> <br>
+    <h3>Продолжительность:</h3>
+    <label> <input pInputText size="30" type="text" name="duration" [(ngModel)]="tour.duration"> </label> <br>
+    <h3>Место встречи:</h3>
+    <label> <input pInputText size="30" type="text" name="venue" [(ngModel)]="tour.venue"> </label> <br>
+    <h3>Колличество участников:</h3>
+    <label>
+      <p-spinner size="30" [min]="0" [max]="50" name="participants" [(ngModel)]="tour.participants"></p-spinner>
+    </label> <br>
+    <h3>Цена:</h3>
+    <label>
+      <p-spinner size="30" [min]="0" name="price" [(ngModel)]="tour.price"></p-spinner>
+    </label> <br>
 
-    <label>Pictures: </label> <br>
-    <input type="text" name="picture" placeholder="Type picture URL" [(ngModel)]="inputPictureUrl">
-    <button type="button" (click)="addPictureUrl()">Add &#10004;</button> <br>
-    <nav *ngFor="let pic of tour.pictures">
+    <h3>Доступные дни недели:</h3>
+    <nav style="display: inline">
+      <a><p-checkbox name="1" label="Понедельник" [(ngModel)]="monday" binary="true"></p-checkbox></a>
+      <a><p-checkbox name="2" label="Вторник" [(ngModel)]="tuesday" binary="true"></p-checkbox></a>
+      <a><p-checkbox name="3" label="Среда" [(ngModel)]="wednesday" binary="true"></p-checkbox></a>
+      <a><p-checkbox name="4" label="Четверг" [(ngModel)]="thursday" binary="true"></p-checkbox></a>
+      <a><p-checkbox name="5" label="Пятница" [(ngModel)]="friday" binary="true"></p-checkbox></a>
+      <a><p-checkbox name="6" label="Суббота" [(ngModel)]="saturday" binary="true"></p-checkbox></a>
+      <a><p-checkbox name="0" label="Воскресенье" [(ngModel)]="sunday" binary="true"></p-checkbox> <br></a>
+    </nav> <br>
+
+    <h3>Обложка:</h3>
+    <label> <input pInputText type="text" name="imageUrl" [(ngModel)]="tour.imageUrl"> </label> <br>
+    <h3>Изображения:</h3>
+    <label> <input pInputText type="text" name="picture" placeholder="Type picture URL" [(ngModel)]="inputPictureUrl"> </label> <br>
+    <p-button type="button" (onClick)="addPictureUrl()" label="Add &#10004;" styleClass="ui-button-info"></p-button> <br>
+    <nav style="display: inline-block" *ngFor="let pic of tour.pictures">
       <label>{{pic}}</label>
-      <button type="button" (click)="deletePicture(pic)">Delete &#10008;</button> <br>
+      <p-button type="button" (onClick)="deletePicture(pic)" label="Delete &#10008;" styleClass="ui-button-info"></p-button> <br>
       <img src="{{pic}}" alt="Can't find a picture"> <br>
-    </nav>
+    </nav> <br>
 
-    <button type="submit" [disabled]="tourForm.form.invalid">Save</button>
-    <button type="button" (click)="goBack()">Cancel</button>
+    <p-button type="submit" label="Сохранить" [disabled]="tourForm.form.invalid"></p-button>
+    <p-button type="button" label="Отмена" (onClick)="goBack()"></p-button>
   </form>
 </div>
-<ng-template #errorBlock>
-  <p>{{error}}</p>
+<ng-template #loadingBlock>
+  <p>Загрузка...</p>
 </ng-template>

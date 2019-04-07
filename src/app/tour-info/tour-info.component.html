@@ -1,10 +1,10 @@
-<nav *ngIf="tour !== undefined; else errorBlock" class="full-content">
-  <label> title: {{tour.title}} </label> <br>
-  <label> description: {{tour.description}} </label> <br>
-  <label> duration: {{tour.duration}} </label> <br>
-  <label> participants: {{tour.participants}} </label> <br>
-  <label> venue: {{tour.venue}} </label> <br>
-  <label> price: {{tour.price}} </label> <br>
+<nav *ngIf="tour !== undefined; else loadingBlock" class="full-content">
+  <label> {{tour.title}} </label> <br>
+  <label [innerHTML]="tour.description"> </label>
+  <label> Продолжительность: {{tour.duration}} </label> <br>
+  <label> Максимальное колличество участников: {{tour.participants}} </label> <br>
+  <label> Место встречи: {{tour.venue}} </label> <br>
+  <label> Цена за человека: {{tour.price}} </label> <br>
   <nav style="width: 100%" *ngIf="tour.pictures.length > 0">
        <slideshow
          [height]="'auto'"
@@ -14,35 +14,27 @@
          [imageUrls]="tour.pictures">
        </slideshow>
   </nav>
-  <div *ngIf="vacantDates.length > 0; else elseBlock">
-    <p>Vacant dates:</p>
-    <div class="vacant-date" *ngFor="let vacantDate of vacantDates">
-      <span>StartDate: {{vacantDate.startDate | date : 'd MMMM yyyy H:mm'}}</span><br>
-      <span>Vacant places: {{vacantDate.vacantPlaces}}</span><br>
-      <button routerLink="/booking/{{vacantDate.id}}">Order</button>
-    </div>
-  </div>
-  <ng-template #elseBlock>
-    <p>We don't have any vacant dates, if you are interesting in the tour, please contact us.</p>
-  </ng-template>
+  <h3>Выберите подходящую дату:</h3>
+  <app-calendar [(tour)]="tour"></app-calendar>
+  <!--<div *ngIf="vacantDates.length > 0; else elseBlock">-->
+    <!--<p>Vacant dates:</p>-->
+    <!--<div class="vacant-date" *ngFor="let vacantDate of vacantDates">-->
+      <!--<span>StartDate: {{vacantDate.startDate | date : 'd MMMM yyyy H:mm'}}</span><br>-->
+      <!--<span>Vacant places: {{vacantDate.vacantPlaces}}</span><br>-->
+      <!--<button routerLink="/booking/{{vacantDate.id}}">Order</button>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<ng-template #elseBlock>-->
+    <!--<p>We don't have any vacant dates, if you are interesting in the tour, please contact us.</p>-->
+  <!--</ng-template>-->
+
   <button (click)="goBack()"><span>Back</span></button>
-
-<div *ngIf="bookedDates !== undefined && bookedDates.length > 0">
-  <p>Vacant dates:</p>
-  <div class="vacant-date" *ngFor="let bookedDate of bookedDates">
-    <span>StartDate: {{bookedDate.date | date: 'd MMMM yyyy'}}</span><br>
-    <span>StartDate: {{bookedDate.orderId}}</span><br>
-    <span>StartDate: {{bookedDate.vacant}}</span><br>
-    <span>StartDate: {{tour.minStartTime}}</span><br>
-    <span>StartDate: {{tour.maxStartTime}}</span><br>
-  </div>
-</div>
-  <button (click)="getDates()"><span>DATES</span></button>
 </nav>
-<!--<p-calendar [(ngModel)]="bookedDates"></p-calendar>-->
-<p-galleria [images]="images" panelWidth="500" panelHeight="313" [showCaption]="true" [autoPlay]="true"></p-galleria>
 
-<ng-template #errorBlock>
+
+<!--<p-galleria [images]="images" panelWidth="500" panelHeight="500" [showCaption]="true" [autoPlay]="true"></p-galleria>-->
+
+<ng-template #loadingBlock>
   <p>Загрузка...</p>
 </ng-template>
 

@@ -11,9 +11,16 @@ import {AdminService} from '../../../services/admin.service';
   styleUrls: ['./tour.component.css']
 })
 export class TourComponent implements OnInit {
-  tour: Tour = new Tour('');
   inputPictureUrl: string = '';
-  error: any;
+  tour: Tour;
+
+  monday: boolean;
+  tuesday: boolean;
+  wednesday: boolean;
+  thursday: boolean;
+  friday: boolean;
+  saturday: boolean;
+  sunday: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -28,7 +35,10 @@ export class TourComponent implements OnInit {
   getTour(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.adminService.getTour(id)
-      .subscribe(tour => this.tour = tour);
+      .subscribe(tour => {
+        this.tour = tour;
+        this.fillVacantDaysOfWeek(tour.disabledDaysOfWeek);
+      });
   }
 
   goBack(): void {
@@ -36,6 +46,7 @@ export class TourComponent implements OnInit {
   }
 
   updateTour(): void {
+    this.putDisabledDaysOfWeekIntoTour();
     this.adminService.updateTour(this.tour).subscribe(() => this.goBack());
   }
 
@@ -51,5 +62,27 @@ export class TourComponent implements OnInit {
     if(index !== -1){
       this.tour.pictures.splice(index, 1);
     }
+  }
+
+  // daysOfWeek consist of disabled days of tour.
+  private fillVacantDaysOfWeek(disabledDaysOfWeek: number[]) {
+    this.monday = disabledDaysOfWeek.indexOf(1) == -1;
+    this.tuesday = disabledDaysOfWeek.indexOf(2) == -1;
+    this.wednesday = disabledDaysOfWeek.indexOf(3) == -1;
+    this.thursday = disabledDaysOfWeek.indexOf(4) == -1;
+    this.friday = disabledDaysOfWeek.indexOf(5) == -1;
+    this.saturday = disabledDaysOfWeek.indexOf(6) == -1;
+    this.sunday = disabledDaysOfWeek.indexOf(0) == -1;
+  }
+
+  private putDisabledDaysOfWeekIntoTour() {
+    this.tour.disabledDaysOfWeek = [];
+    if (!this.monday) this.tour.disabledDaysOfWeek.push(1);
+    if (!this.tuesday) this.tour.disabledDaysOfWeek.push(2);
+    if (!this.wednesday) this.tour.disabledDaysOfWeek.push(3);
+    if (!this.thursday) this.tour.disabledDaysOfWeek.push(4);
+    if (!this.friday) this.tour.disabledDaysOfWeek.push(5);
+    if (!this.saturday) this.tour.disabledDaysOfWeek.push(6);
+    if (!this.sunday) this.tour.disabledDaysOfWeek.push(0);
   }
 }

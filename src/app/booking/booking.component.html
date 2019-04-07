@@ -11,10 +11,10 @@
       Please, check the details above and provide some information for booking the tour "{{tour.title}}".
     </p>
     <form (ngSubmit)="bookTour()" #orderForm="ngForm">
-      <label>Participants: </label>
+      <label>Participants:
       <select name="participants" [(ngModel)]="order.participants">
         <option *ngFor="let value of participants" [value]="value">{{value}}</option>
-      </select>
+      </select> </label>
       <label>Name: </label> <input type="text" name="name" [(ngModel)]="order.name" required>
       <label>Email: </label> <input type="text" name="email" [(ngModel)]="order.email"
                                     pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>

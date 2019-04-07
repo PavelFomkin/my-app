@@ -14,7 +14,6 @@ import {Calendar} from '../entity/calendar';
 export class TourInfoComponent implements OnInit {
   tour: Tour;
   vacantDates: VacantDate[] = [];
-  bookedDates: Calendar[];
   images: any[] = [];
 
   constructor(private route: ActivatedRoute,
@@ -41,13 +40,6 @@ export class TourInfoComponent implements OnInit {
 
   getVacantDates(id: number) {
     this.tourService.getVacantDates(id).subscribe(vacantDates => this.vacantDates = vacantDates);
-  }
-
-  getDates(){
-    this.tourService.getVacantDates2(2019,3)
-      .subscribe(dates => {
-        this.bookedDates = dates;
-      });
   }
 
   goBack() {

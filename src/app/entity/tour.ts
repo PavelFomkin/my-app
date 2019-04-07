@@ -7,9 +7,12 @@ export class Tour {
   participants: number;
   venue: string;
   price: number;
-  visible: boolean = false;
   imageUrl: string = 'assets/img/nature.jpg';
   pictures: string[] = [];
+  visible: boolean = false;
+
+  disabledDaysOfWeek: number[];
+  disabledDates: Date[];
   minStartTime: number;
   maxStartTime: number;
 
