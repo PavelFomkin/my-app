@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Tour} from '../entity/tour';
+import {Picture} from '../entity/picture';
 import {VacantDate} from '../entity/vacant-date';
 import {TourService} from '../services/tour.service';
 import {ActivatedRoute} from '@angular/router';
@@ -13,7 +14,8 @@ import {Calendar} from '../entity/calendar';
 })
 export class TourInfoComponent implements OnInit {
   tour: Tour;
-  vacantDates: VacantDate[] = [];
+  pictures: Picture[];
+//  vacantDates: VacantDate[] = [];
   images: any[] = [];
 
   constructor(private route: ActivatedRoute,
@@ -22,6 +24,8 @@ export class TourInfoComponent implements OnInit {
 
   ngOnInit() {
     this.getTour();
+    this.getPictures();
+
     this.images.push({source:'https://pp.userapi.com/c852220/v852220985/651d7/ks9kzze4LUQ.jpg', alt:'Description for Image 1', title:'Title 1'});
     this.images.push({source:'https://pp.userapi.com/c852220/v852220985/651d7/ks9kzze4LUQ.jpg', alt:'Description for Image 2', title:'Title 2'});
     this.images.push({source:'https://pp.userapi.com/c852220/v852220985/651d7/ks9kzze4LUQ.jpg', alt:'Description for Image 3', title:'Title 3'});
@@ -31,11 +35,12 @@ export class TourInfoComponent implements OnInit {
 
   getTour() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.tourService.getTour(id)
-                    .subscribe(tour => {
-                                this.tour = tour;
-                                this.getVacantDates(tour.id);
-                              });
+    this.tourService.getTour(id).subscribe(tour => this.tour = tour);
+  }
+
+  getPictures() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.tourService.getPictures(id).subscribe(pictures => this.pictures = pictures);
   }
 
   getVacantDates(id: number) {

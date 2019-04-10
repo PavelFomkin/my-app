@@ -1,4 +1,4 @@
-<nav *ngIf="tour !== undefined; else loadingBlock" class="full-content">
+<nav *ngIf="tour !== undefined && pictures !== undefined; else loadingBlock" class="full-content">
   <label> {{tour.title}} </label> <br>
   <label [innerHTML]="tour.description"> </label>
   <label> Продолжительность: {{tour.duration}} </label> <br>

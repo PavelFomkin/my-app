@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 
 import {Tour} from '../entity/tour';
+import {Picture} from '../entity/picture';
 import {VacantDate} from '../entity/vacant-date';
 import {Order} from '../entity/order';
 
@@ -22,9 +23,10 @@ export class TourService {
   source: string = '//localhost:8080/';
   getToursUrl: string = this.source + 'available-tours';
   getTourUrl: string = this.source + 'available-tours/';
+  getPicturesUrl: string = this.source + 'pictures/';
   getDisableDatesUrl: string = this.source + 'disabled-dates';
-  getVacantDatesUrl: string = this.source + 'vacant-dates/';
-  getVacantDateUrl: string = this.source + 'vacant-date/';
+//  getVacantDatesUrl: string = this.source + 'vacant-dates/';
+//  getVacantDateUrl: string = this.source + 'vacant-date/';
   createOrderUrl: string = this.source + 'create-order';
 
   constructor(private route: ActivatedRoute,
@@ -46,21 +48,29 @@ export class TourService {
                     .pipe(catchError(err => this.errorHandle.handleError(err)));
   }
 
-  getVacantDate(id: number): Observable<VacantDate> {
-    return this.http.get<VacantDate>(this.getVacantDateUrl + id, httpOptions)
+  getPictures(id: number): Observable<List<Picture>> {
+    return this.http.get<List<Picture>>(this.getPicturesUrl + id, httpOptions)
                     .pipe(catchError(err => this.errorHandle.handleError(err)));
   }
 
-  getVacantDates(id: number): Observable<VacantDate[]> {
-    return this.http.get<VacantDate[]>(this.getVacantDatesUrl + id, httpOptions)
-                    .pipe(catchError(err => this.errorHandle.handleError(err)));
-  }
+//  getVacantDate(id: number): Observable<VacantDate> {
+//    return this.http.get<VacantDate>(this.getVacantDateUrl + id, httpOptions)
+//                    .pipe(catchError(err => this.errorHandle.handleError(err)));
+//  }
+//
+//  getVacantDates(id: number): Observable<VacantDate[]> {
+//    return this.http.get<VacantDate[]>(this.getVacantDatesUrl + id, httpOptions)
+//                    .pipe(catchError(err => this.errorHandle.handleError(err)));
+//  }
 
   getCalendarDisableDates(): Observable<Date[]> {
     return this.http.get<Date[]>(this.getDisableDatesUrl, httpOptions)
       .pipe(catchError(err => this.errorHandle.handleError(err)));
   }
 
+
+  // - - - - - E X A M P L E how to send parameters in GET request. - - - - -
+  //
   // getCalendarDisableDates(year: number, month: number): Observable<Date[]> {
   //   const params = {
   //     year: year.toString(),

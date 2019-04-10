@@ -95,31 +95,31 @@ export class AdminService {
   }
 
   // Vacant dates
-  getAllVacantDates(id: number): Observable<VacantDate[]> {
-      return this.http.get<VacantDate[]>(this.getAllVacantDatesUrl + id, httpOptions)
-                      .pipe(catchError(err => this.errorHandle.handleError(err)));
-  }
-  saveVacantDate(vacantDate: VacantDate): Observable<VacantDate> {
-    if(vacantDate.id === undefined){
-      return this.createVacantDate(vacantDate);
-    } else {
-      return this.updateVacantDate(vacantDate);
-    }
-  }
-  createVacantDate(vacantDate: VacantDate): Observable<VacantDate> {
-    return this.http.post<VacantDate>(this.createVacantDateUrl, vacantDate, httpOptions)
-                    .pipe(catchError(err => this.errorHandle.handleError(err)));
-  }
-  updateVacantDate(vacantDate: VacantDate): Observable<VacantDate> {
-    return this.http.put<VacantDate>(this.updateVacantDateUrl + vacantDate.id, vacantDate, httpOptions)
-                    .pipe(catchError(err => this.errorHandle.handleError(err)));
-  }
-  deleteVacantDate(vacId: number): Observable<{}> {
-    return this.http.delete(this.deleteVacantDateUrl + vacId, httpOptions)
-                    .pipe(catchError(err => this.errorHandle.handleError(err)));
-  }
-  changeStatusVacantDate(vacantDate: VacantDate): Observable<VacantDate>{
-    return this.http.get<VacantDate>(this.changeStatusVacantDateUrl + vacantDate.id, httpOptions)
-                    .pipe(catchError(err => this.errorHandle.handleError(err)));
-  }
+//  getAllVacantDates(id: number): Observable<VacantDate[]> {
+//      return this.http.get<VacantDate[]>(this.getAllVacantDatesUrl + id, httpOptions)
+//                      .pipe(catchError(err => this.errorHandle.handleError(err)));
+//  }
+//  saveVacantDate(vacantDate: VacantDate): Observable<VacantDate> {
+//    if(vacantDate.id === undefined){
+//      return this.createVacantDate(vacantDate);
+//    } else {
+//      return this.updateVacantDate(vacantDate);
+//    }
+//  }
+//  createVacantDate(vacantDate: VacantDate): Observable<VacantDate> {
+//    return this.http.post<VacantDate>(this.createVacantDateUrl, vacantDate, httpOptions)
+//                    .pipe(catchError(err => this.errorHandle.handleError(err)));
+//  }
+//  updateVacantDate(vacantDate: VacantDate): Observable<VacantDate> {
+//    return this.http.put<VacantDate>(this.updateVacantDateUrl + vacantDate.id, vacantDate, httpOptions)
+//                    .pipe(catchError(err => this.errorHandle.handleError(err)));
+//  }
+//  deleteVacantDate(vacId: number): Observable<{}> {
+//    return this.http.delete(this.deleteVacantDateUrl + vacId, httpOptions)
+//                    .pipe(catchError(err => this.errorHandle.handleError(err)));
+//  }
+//  changeStatusVacantDate(vacantDate: VacantDate): Observable<VacantDate>{
+//    return this.http.get<VacantDate>(this.changeStatusVacantDateUrl + vacantDate.id, httpOptions)
+//                    .pipe(catchError(err => this.errorHandle.handleError(err)));
+//  }
 }

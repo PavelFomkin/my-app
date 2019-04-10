@@ -1,20 +1,19 @@
 export class Tour {
   id: number;
   title: string;
-  description: string;
   shortDescription: string;
+  description: string;
   duration: string;
   participants: number;
   venue: string;
   price: number;
-  imageUrl: string = 'assets/img/nature.jpg';
-  pictures: string[] = [];
   visible: boolean = false;
+  imageUrl: string = 'assets/img/nature.jpg';
+  minStartTime: number;
+  maxStartTime: number;
 
   disabledDaysOfWeek: number[];
   disabledDates: Date[];
-  minStartTime: number;
-  maxStartTime: number;
 
   constructor(title: string){
     this.title = title;

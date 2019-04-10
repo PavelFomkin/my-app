@@ -4,10 +4,11 @@ export class Order {
   email: string;
   phoneNumber: string;
   participants: number = 1;
-  bookingDate: Date = new Date();
   comment: string;
 
+  bookingDate: Date = new Date();
   confirmation: boolean = false;
-  vacantDateId: number;
+
   tourId: number;
+  date: Date;
 }
